@@ -12,6 +12,7 @@ class CustomTextFeild extends StatelessWidget {
       this.borderColor = Colors.yellow,
       this.maxLines = 1,
       this.onChanged,
+      this.controller,
       this.security = false,
       this.validator});
 
@@ -20,6 +21,7 @@ class CustomTextFeild extends StatelessWidget {
   String? text;
   Widget? prefix;
   Widget? sufix;
+  TextEditingController? controller;
   
   Color? borderColor;
   int maxLines;
@@ -31,6 +33,7 @@ class CustomTextFeild extends StatelessWidget {
       style: TextStyle(color: Colors.white,),
       obscureText: security,
       initialValue: text,
+      controller: controller,
       onChanged: onChanged,
       validator: validator,
       maxLines: maxLines,

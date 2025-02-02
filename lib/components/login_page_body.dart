@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/cubits/login_cubit/login_cubit.dart';
+import 'package:movies_app/cubits/login_cubit/login_state.dart';
 import 'package:movies_app/models/asset_image.dart';
 import 'package:movies_app/models/asset_style.dart';
 import 'package:movies_app/widgets/create_account_and_log_in_widget.dart';
@@ -15,28 +18,88 @@ class LoginPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
+    var email = TextEditingController();
+    var password = TextEditingController();
+
     return Padding(
-        padding:  EdgeInsets.symmetric(horizontal: width*0.02,vertical: height*0.02),
-        child: Column(
+      padding: EdgeInsets.symmetric(
+          horizontal: width * 0.02, vertical: height * 0.02),
+      child: Column(
         children: [
-          SizedBox(height: height*0.06,),
-          Image.asset(ImagesApp.iconApp,width: width*0.28,height: height*0.12,),
-          SizedBox(height: height*0.04,),
-          CustomTextFeild(hintText: 'Email' ,prefix: Icon(Icons.email,size: 24,color: Colors.white,),),
-          SizedBox(height: height*0.04,),
-          CustomTextFeild(hintText: 'Paswword',prefix: Icon(Icons.lock,size: 24,color: Colors.white,),sufix: Icon(Icons.visibility_off,size: 24,color: Colors.white,),),
-          SizedBox(height: height*0.04,),
+          SizedBox(
+            height: height * 0.06,
+          ),
+          Image.asset(
+            ImagesApp.iconApp,
+            width: width * 0.28,
+            height: height * 0.12,
+          ),
+          SizedBox(
+            height: height * 0.04,
+          ),
+          CustomTextFeild(
+            hintText: 'Email',
+            prefix: Icon(
+              Icons.email,
+              size: 24,
+              color: Colors.white,
+            ),
+            controller: email,
+          ),
+          SizedBox(
+            height: height * 0.04,
+          ),
+          CustomTextFeild(
+            hintText: 'Paswword',
+            prefix: Icon(
+              Icons.lock,
+              size: 24,
+              color: Colors.white,
+            ),
+            sufix: Icon(
+              Icons.visibility_off,
+              size: 24,
+              color: Colors.white,
+            ),
+            controller: password,
+          ),
+          SizedBox(
+            height: height * 0.04,
+          ),
           ForgetWidget(),
-          SizedBox(height: height*0.04,),
-          CustomButton(title: 'Login'),
-          SizedBox(height: height*0.04,),
+          SizedBox(
+            height: height * 0.04,
+          ),
+          BlocConsumer<LoginCubit, LoginState>(
+            listener: (context, state) {
+              if(state is LoginSucsess ){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Login Successful")));
+              }else if(state is LoginFaliur){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.errorMessage)));
+              }
+            },
+            builder: (context, state) {
+              if(state is LoginLoading){
+                Center(child: CircularProgressIndicator(),);
+              }
+              return CustomButton(title: 'Login',onTap: (){
+                BlocProvider.of<LoginCubit>(context).signIn(email.text, password.text);
+              },);
+            },
+          ),
+          SizedBox(
+            height: height * 0.04,
+          ),
           CreateAccountAndLoginWidget(),
-          SizedBox(height: height*0.04,),
+          SizedBox(
+            height: height * 0.04,
+          ),
           OrWidget(),
           CustomButton(title: 'Login With Google'),
         ],
-        
-            ),
-      );
+      ),
+    );
   }
 }
