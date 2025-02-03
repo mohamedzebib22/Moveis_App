@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:movies_app/core/api/api_consumer.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/core/errors/server_exeptions.dart';
 import 'package:movies_app/cubits/login_cubit/login_state.dart';
+import 'package:movies_app/models/sign_in_model.dart';
 import 'package:movies_app/screens/forget_password_page.dart';
 import 'package:movies_app/screens/register_page_body.dart';
 
@@ -13,7 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
   final ApiConsumer api;
   
   signIn(String email, String password , String baseUrl) async {
-    
+    SignInModel user;
     try {
       emit(LoginLoading());
       final Response response = await api.post(
@@ -23,6 +25,9 @@ class LoginCubit extends Cubit<LoginState> {
       );
 
       if (response.statusCode == 200) {
+        user =SignInModel.fromJson(response.data);
+        final decodedToken = JwtDecoder.decode(user.token);
+        print('The id is ${decodedToken['id']}===============');
         emit(LoginSuccess());
         print(response.data.toString());
       } else {
