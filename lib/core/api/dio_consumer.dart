@@ -9,6 +9,9 @@ class DioConsumer extends ApiConsumer {
 
   DioConsumer({required this.dio}){
     dio.options.baseUrl = Endpoint.baseUrl;
+    dio.options.validateStatus =(statusCode){
+      return statusCode! < 500;
+    };
   }
   @override
   Future get(String path, {data,
@@ -54,16 +57,19 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future post(String path, {data, 
+  Future<Response> post(String path, {data, 
   Map<String, dynamic>? queryParameters,
   bool isFormData =false
   })async {
       try {
       final response =
           await dio.post(path, data: isFormData ? FormData.fromMap(data): data, queryParameters: queryParameters);
-      return response.data;
+      return response;
     } on DioException catch (e) {
-      handelDioExeptions(e);
+      if (e.response != null && e.response!.statusCode == 400) {
+        throw ServerExeptions(errorModel: ErrorModel.fromJson(e.response!.data));
+      }
+      throw (e.message!);
     }
   }
 }

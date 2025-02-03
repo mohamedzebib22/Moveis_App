@@ -21,85 +21,89 @@ class LoginPageBody extends StatelessWidget {
     var email = TextEditingController();
     var password = TextEditingController();
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: width * 0.02, vertical: height * 0.02),
-      child: Column(
-        children: [
-          SizedBox(
-            height: height * 0.06,
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        
+         if(state is LoginSuccess){
+          ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login Sucsess')));
+        }
+        else if(state is LoginFailure){
+          ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(state.errorMessage)));
+        }
+      },
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: width * 0.02, vertical: height * 0.02),
+          child: Column(
+            children: [
+              SizedBox(
+                height: height * 0.06,
+              ),
+              Image.asset(
+                ImagesApp.iconApp,
+                width: width * 0.28,
+                height: height * 0.12,
+              ),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              CustomTextFeild(
+                hintText: 'Email',
+                prefix: Icon(
+                  Icons.email,
+                  size: 24,
+                  color: Colors.white,
+                ),
+                controller: email,
+              ),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              CustomTextFeild(
+                hintText: 'Paswword',
+                prefix: Icon(
+                  Icons.lock,
+                  size: 24,
+                  color: Colors.white,
+                ),
+                sufix: Icon(
+                  Icons.visibility_off,
+                  size: 24,
+                  color: Colors.white,
+                ),
+                controller: password,
+              ),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              ForgetWidget(),
+              SizedBox(
+                height: height * 0.04,
+              ),
+             state is LoginLoading
+                  ? Center(child: CircularProgressIndicator()) :CustomButton(
+                title: 'Login',
+                onTap: (){
+                  BlocProvider.of<LoginCubit>(context).signIn(email.text, password.text);
+                  
+                },
+              ),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              CreateAccountAndLoginWidget(),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              OrWidget(),
+              CustomButton(title: 'Login With Google'),
+            ],
           ),
-          Image.asset(
-            ImagesApp.iconApp,
-            width: width * 0.28,
-            height: height * 0.12,
-          ),
-          SizedBox(
-            height: height * 0.04,
-          ),
-          CustomTextFeild(
-            hintText: 'Email',
-            prefix: Icon(
-              Icons.email,
-              size: 24,
-              color: Colors.white,
-            ),
-            controller: email,
-          ),
-          SizedBox(
-            height: height * 0.04,
-          ),
-          CustomTextFeild(
-            hintText: 'Paswword',
-            prefix: Icon(
-              Icons.lock,
-              size: 24,
-              color: Colors.white,
-            ),
-            sufix: Icon(
-              Icons.visibility_off,
-              size: 24,
-              color: Colors.white,
-            ),
-            controller: password,
-          ),
-          SizedBox(
-            height: height * 0.04,
-          ),
-          ForgetWidget(),
-          SizedBox(
-            height: height * 0.04,
-          ),
-          BlocConsumer<LoginCubit, LoginState>(
-            listener: (context, state) {
-              if(state is LoginSucsess ){
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Login Successful")));
-              }else if(state is LoginFaliur){
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.errorMessage)));
-              }
-            },
-            builder: (context, state) {
-              if(state is LoginLoading){
-                Center(child: CircularProgressIndicator(),);
-              }
-              return CustomButton(title: 'Login',onTap: (){
-                BlocProvider.of<LoginCubit>(context).signIn(email.text, password.text);
-              },);
-            },
-          ),
-          SizedBox(
-            height: height * 0.04,
-          ),
-          CreateAccountAndLoginWidget(),
-          SizedBox(
-            height: height * 0.04,
-          ),
-          OrWidget(),
-          CustomButton(title: 'Login With Google'),
-        ],
-      ),
+        );
+      },
     );
   }
 }
