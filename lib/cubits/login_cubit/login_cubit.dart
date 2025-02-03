@@ -8,11 +8,11 @@ import 'package:movies_app/cubits/login_cubit/login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.api) : super(LoginInitial());
   final ApiConsumer api;
-  signIn(String email, String password) async {
-    
+  signIn(String email, String password , String baseUrl) async {
     try {
       emit(LoginLoading());
       final Response response = await api.post(
+        baseUrl,
         Endpoint.signIn,
         data: {ApiKey.email: email, ApiKey.password: password},
       );

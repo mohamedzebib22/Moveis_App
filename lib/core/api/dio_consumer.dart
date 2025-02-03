@@ -8,13 +8,15 @@ class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer({required this.dio}){
-    dio.options.baseUrl = Endpoint.baseUrl;
+    //dio.options.baseUrl = Endpoint.baseUrl;
     dio.options.validateStatus =(statusCode){
       return statusCode! < 500;
     };
   }
   @override
-  Future get(String path, {data,
+  Future get(
+    String baseUrl,
+    String path, {data,
    Map<String, dynamic>? queryParameters ,
    bool isFormData =false
    }) async{
@@ -28,7 +30,9 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future delete(String path,
+  Future delete(
+    String baseUrl,
+    String path,
       {data, Map<String, 
       dynamic>? queryParameters,
       bool isFormData =false
@@ -43,7 +47,9 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future patch(String path, {data, 
+  Future patch(
+    String baseUrl,
+    String path, {data, 
   Map<String, dynamic>? queryParameters,
   bool isFormData =false
   }) async{
@@ -57,11 +63,14 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future<Response> post(String path, {data, 
+  Future<Response> post(
+    String baseUrl,
+    String path, {data, 
   Map<String, dynamic>? queryParameters,
   bool isFormData =false
   })async {
       try {
+        dio.options.baseUrl = baseUrl;
       final response =
           await dio.post(path, data: isFormData ? FormData.fromMap(data): data, queryParameters: queryParameters);
       return response;

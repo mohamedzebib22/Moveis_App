@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/cubits/login_cubit/login_cubit.dart';
 import 'package:movies_app/cubits/login_cubit/login_state.dart';
 import 'package:movies_app/models/asset_image.dart';
@@ -87,7 +88,7 @@ class LoginPageBody extends StatelessWidget {
                   ? Center(child: CircularProgressIndicator()) :CustomButton(
                 title: 'Login',
                 onTap: (){
-                  BlocProvider.of<LoginCubit>(context).signIn(email.text, password.text);
+                  BlocProvider.of<LoginCubit>(context).signIn(email.text, password.text,Endpoint.baseUrl);
                   
                 },
               ),
