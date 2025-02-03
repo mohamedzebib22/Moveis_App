@@ -1,14 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:movies_app/core/api/api_consumer.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/core/errors/server_exeptions.dart';
 import 'package:movies_app/cubits/login_cubit/login_state.dart';
+import 'package:movies_app/screens/forget_password_page.dart';
+import 'package:movies_app/screens/register_page_body.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.api) : super(LoginInitial());
   final ApiConsumer api;
+  
   signIn(String email, String password , String baseUrl) async {
+    
     try {
       emit(LoginLoading());
       final Response response = await api.post(
@@ -29,4 +34,19 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginFailure(errorMessage: e.toString()));
     }
   }
+
+  void NavigateToRegisterPage(context){
+    Navigator.pushReplacementNamed(context, RegisterPage.id);
+  }
+  void NavigateToForgetPasswordPage(context){
+    Navigator.pushNamed(context, ForgetPasswordPage.id);
+  }
+
+  String? validateField(String? title, String errorMessage) {
+    if (title == null || title.isEmpty) {
+      return errorMessage;
+    }
+    return null;
+  }
+ 
 }

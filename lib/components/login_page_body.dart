@@ -21,6 +21,7 @@ class LoginPageBody extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var email = TextEditingController();
     var password = TextEditingController();
+    var formkey = GlobalKey<FormState>();
 
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
@@ -35,73 +36,90 @@ class LoginPageBody extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        var cubit =BlocProvider.of<LoginCubit>(context);
         return Padding(
           padding: EdgeInsets.symmetric(
               horizontal: width * 0.02, vertical: height * 0.02),
-          child: Column(
-            children: [
-              SizedBox(
-                height: height * 0.06,
-              ),
-              Image.asset(
-                ImagesApp.iconApp,
-                width: width * 0.28,
-                height: height * 0.12,
-              ),
-              SizedBox(
-                height: height * 0.04,
-              ),
-              CustomTextFeild(
-                hintText: 'Email',
-                prefix: Icon(
-                  Icons.email,
-                  size: 24,
-                  color: Colors.white,
+          child: Form(
+            key:formkey ,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: height * 0.06,
                 ),
-                controller: email,
-              ),
-              SizedBox(
-                height: height * 0.04,
-              ),
-              CustomTextFeild(
-                hintText: 'Paswword',
-                prefix: Icon(
-                  Icons.lock,
-                  size: 24,
-                  color: Colors.white,
+                Image.asset(
+                  ImagesApp.iconApp,
+                  width: width * 0.28,
+                  height: height * 0.12,
                 ),
-                sufix: Icon(
-                  Icons.visibility_off,
-                  size: 24,
-                  color: Colors.white,
+                SizedBox(
+                  height: height * 0.04,
                 ),
-                controller: password,
-              ),
-              SizedBox(
-                height: height * 0.04,
-              ),
-              ForgetWidget(),
-              SizedBox(
-                height: height * 0.04,
-              ),
-             state is LoginLoading
-                  ? Center(child: CircularProgressIndicator()) :CustomButton(
-                title: 'Login',
-                onTap: (){
-                  BlocProvider.of<LoginCubit>(context).signIn(email.text, password.text,Endpoint.baseUrl);
-                  
-                },
-              ),
-              SizedBox(
-                height: height * 0.04,
-              ),
-              CreateAccountAndLoginWidget(),
-              SizedBox(
-                height: height * 0.04,
-              ),
-              OrWidget(),
-              CustomButton(title: 'Login With Google'),
-            ],
+                CustomTextFeild(
+                  validator: (email) {
+                      return cubit.validateField(email, 'Please Enter Email');
+                    },
+                  hintText: 'Email',
+                  prefix: Icon(
+                    Icons.email,
+                    size: 24,
+                    color: Colors.white,
+                  ),
+                  controller: email,
+                ),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                CustomTextFeild(
+                  validator: (email) {
+                      return cubit.validateField(email, 'Please Enter Password');
+                    },
+                  hintText: 'Paswword',
+                  prefix: Icon(
+                    Icons.lock,
+                    size: 24,
+                    color: Colors.white,
+                  ),
+                  sufix: Icon(
+                    Icons.visibility_off,
+                    size: 24,
+                    color: Colors.white,
+                  ),
+                  controller: password,
+                ),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                ForgetWidget(onTap: () { 
+                  cubit.NavigateToForgetPasswordPage(context);
+                 },),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+               state is LoginLoading
+                    ? Center(child: CircularProgressIndicator()) :CustomButton(
+                  title: 'Login',
+                  onTap: (){
+                    if(formkey.currentState?.validate()==true){
+                      cubit.signIn(email.text, password.text,Endpoint.baseUrl);
+                    }
+                    
+                    
+                  },
+                ),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                CreateAccountAndLoginWidget(text1: 'Don’t Have Account?', text2: 'CreateAcount', onTap: () { 
+                  cubit.NavigateToRegisterPage(context);
+                 },),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                OrWidget(),
+                CustomButton(title: 'Login With Google'),
+              ],
+            ),
           ),
         );
       },
