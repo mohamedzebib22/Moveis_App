@@ -11,7 +11,7 @@ import 'package:movies_app/screens/home_page.dart';
 import 'package:movies_app/screens/login_page.dart';
 import 'package:movies_app/screens/onbourding_screen/intro_page.dart';
 import 'package:movies_app/screens/onbourding_screen/onbourding_screen.dart';
-import 'package:movies_app/screens/register_page_body.dart';
+import 'package:movies_app/screens/register_page.dart';
 
 void main() {
   runApp(MultiBlocProvider(providers: [

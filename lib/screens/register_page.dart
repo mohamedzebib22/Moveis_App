@@ -11,6 +11,18 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RegisterPageBody();
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        // leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back), color: Colors.yellow,),
+        title: Center(
+            child: Text(
+          'Register',
+          style: TextStyle(fontSize: 16, color: Colors.yellow),
+        )),
+      ),
+      body: SingleChildScrollView(child: RegisterPageBody()),
+    );
   }
 }

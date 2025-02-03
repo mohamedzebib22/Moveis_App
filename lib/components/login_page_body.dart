@@ -21,27 +21,25 @@ class LoginPageBody extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var email = TextEditingController();
     var password = TextEditingController();
-    var formkey = GlobalKey<FormState>();
+    // var formkey = GlobalKey<FormState>();
 
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        
-         if(state is LoginSuccess){
-          ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login Sucsess')));
-        }
-        else if(state is LoginFailure){
-          ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(state.errorMessage)));
+        if (state is LoginSuccess) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Login Sucsess')));
+        } else if (state is LoginFailure) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.errorMessage)));
         }
       },
       builder: (context, state) {
-        var cubit =BlocProvider.of<LoginCubit>(context);
+        var cubit = BlocProvider.of<LoginCubit>(context);
         return Padding(
           padding: EdgeInsets.symmetric(
               horizontal: width * 0.02, vertical: height * 0.02),
           child: Form(
-            key:formkey ,
+            key: cubit.formkey,
             child: Column(
               children: [
                 SizedBox(
@@ -57,8 +55,8 @@ class LoginPageBody extends StatelessWidget {
                 ),
                 CustomTextFeild(
                   validator: (email) {
-                      return cubit.validateField(email, 'Please Enter Email');
-                    },
+                    return cubit.validateField(email, 'Please Enter Email');
+                  },
                   hintText: 'Email',
                   prefix: Icon(
                     Icons.email,
@@ -72,8 +70,8 @@ class LoginPageBody extends StatelessWidget {
                 ),
                 CustomTextFeild(
                   validator: (email) {
-                      return cubit.validateField(email, 'Please Enter Password');
-                    },
+                    return cubit.validateField(email, 'Please Enter Password');
+                  },
                   hintText: 'Paswword',
                   prefix: Icon(
                     Icons.lock,
@@ -90,29 +88,33 @@ class LoginPageBody extends StatelessWidget {
                 SizedBox(
                   height: height * 0.04,
                 ),
-                ForgetWidget(onTap: () { 
-                  cubit.NavigateToForgetPasswordPage(context);
-                 },),
-                SizedBox(
-                  height: height * 0.04,
-                ),
-               state is LoginLoading
-                    ? Center(child: CircularProgressIndicator()) :CustomButton(
-                  title: 'Login',
-                  onTap: (){
-                    if(formkey.currentState?.validate()==true){
-                      cubit.signIn(email.text, password.text,Endpoint.baseUrl);
-                    }
-                    
-                    
+                ForgetWidget(
+                  onTap: () {
+                    cubit.NavigateToForgetPasswordPage(context);
                   },
                 ),
                 SizedBox(
                   height: height * 0.04,
                 ),
-                CreateAccountAndLoginWidget(text1: 'Don’t Have Account?', text2: 'CreateAcount', onTap: () { 
-                  cubit.NavigateToRegisterPage(context);
-                 },),
+                state is LoginLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : CustomButton(
+                        title: 'Login',
+                        onTap: () {
+                          cubit.signIn(
+                              email.text, password.text, Endpoint.baseUrl);
+                        },
+                      ),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                CreateAccountAndLoginWidget(
+                  text1: 'Don’t Have Account?',
+                  text2: 'CreateAcount',
+                  onTap: () {
+                    cubit.NavigateToRegisterPage(context);
+                  },
+                ),
                 SizedBox(
                   height: height * 0.04,
                 ),

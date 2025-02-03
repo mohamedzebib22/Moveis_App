@@ -8,42 +8,46 @@ import 'package:movies_app/core/errors/server_exeptions.dart';
 import 'package:movies_app/cubits/login_cubit/login_state.dart';
 import 'package:movies_app/models/sign_in_model.dart';
 import 'package:movies_app/screens/forget_password_page.dart';
-import 'package:movies_app/screens/register_page_body.dart';
+import 'package:movies_app/screens/register_page.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.api) : super(LoginInitial());
   final ApiConsumer api;
-  
-  signIn(String email, String password , String baseUrl) async {
-    SignInModel user;
-    try {
-      emit(LoginLoading());
-      final Response response = await api.post(
-        baseUrl,
-        Endpoint.signIn,
-        data: {ApiKey.email: email, ApiKey.password: password},
-      );
+  var formkey = GlobalKey<FormState>();
 
-      if (response.statusCode == 200) {
-        user =SignInModel.fromJson(response.data);
-        final decodedToken = JwtDecoder.decode(user.token);
-        print('The id is ${decodedToken['id']}===============');
-        emit(LoginSuccess());
-        print(response.data.toString());
-      } else {
-        emit(LoginFailure(errorMessage: "Invalid email or password"));
+  signIn(String email, String password, String baseUrl) async {
+    SignInModel user;
+    if (formkey.currentState?.validate() == true) {
+      try {
+        emit(LoginLoading());
+        final Response response = await api.post(
+          baseUrl,
+          Endpoint.signIn,
+          data: {ApiKey.email: email, ApiKey.password: password},
+        );
+
+        if (response.statusCode == 200) {
+          user = SignInModel.fromJson(response.data);
+          final decodedToken = JwtDecoder.decode(user.token);
+          print('The id is ${decodedToken['id']}===============');
+          emit(LoginSuccess());
+          print(response.data.toString());
+        } else {
+          emit(LoginFailure(errorMessage: "Invalid email or password"));
+        }
+      } on ServerExeptions catch (e) {
+        emit(LoginFailure(errorMessage: e.errorModel.message));
+      } catch (e) {
+        emit(LoginFailure(errorMessage: e.toString()));
       }
-    } on ServerExeptions catch (e) {
-      emit(LoginFailure(errorMessage: e.errorModel.message));
-    } catch (e) {
-      emit(LoginFailure(errorMessage: e.toString()));
     }
   }
 
-  void NavigateToRegisterPage(context){
+  void NavigateToRegisterPage(context) {
     Navigator.pushReplacementNamed(context, RegisterPage.id);
   }
-  void NavigateToForgetPasswordPage(context){
+
+  void NavigateToForgetPasswordPage(context) {
     Navigator.pushNamed(context, ForgetPasswordPage.id);
   }
 
@@ -53,5 +57,4 @@ class LoginCubit extends Cubit<LoginState> {
     }
     return null;
   }
- 
 }
