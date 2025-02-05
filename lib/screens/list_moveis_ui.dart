@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/api/endpoint.dart';
-import 'package:movies_app/cubits/test_moveis_cubit/test_moveis_state.dart';
-import 'package:movies_app/cubits/test_moveis_cubit/test_moveis_cubit.dart';
-import 'package:movies_app/cubits/test_moveis_cubit/test_moveis_state.dart';
+import 'package:movies_app/cubits/test_moveis_cubit/list_moveis_state.dart';
+import 'package:movies_app/cubits/test_moveis_cubit/list_moveis_cubit.dart';
+import 'package:movies_app/cubits/test_moveis_cubit/list_moveis_state.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 
 class TestMoveisUi extends StatefulWidget {

@@ -9,7 +9,7 @@ import 'package:movies_app/cubits/login_cubit/login_state.dart';
 import 'package:movies_app/models/sign_in_model.dart';
 import 'package:movies_app/screens/forget_password_page.dart';
 import 'package:movies_app/screens/register_page.dart';
-import 'package:movies_app/screens/test_moveis_ui.dart';
+import 'package:movies_app/screens/list_moveis_ui.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.api) : super(LoginInitial());

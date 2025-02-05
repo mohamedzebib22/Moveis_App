@@ -2,19 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/api/dio_consumer.dart';
-import 'package:movies_app/cubits/test_moveis_cubit/test_moveis_cubit.dart';
+import 'package:movies_app/cubits/test_moveis_cubit/list_moveis_cubit.dart';
 import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
 import 'package:movies_app/cubits/login_cubit/login_cubit.dart';
 import 'package:movies_app/cubits/onbourding_cubit/onbourding_cubit.dart';
 import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
-import 'package:movies_app/cubits/test_moveis_cubit/test_moveis_cubit.dart';
+import 'package:movies_app/cubits/test_moveis_cubit/list_moveis_cubit.dart';
 import 'package:movies_app/screens/forget_password_page.dart';
 import 'package:movies_app/screens/home_page.dart';
 import 'package:movies_app/screens/login_page.dart';
 import 'package:movies_app/screens/onbourding_screen/intro_page.dart';
 import 'package:movies_app/screens/onbourding_screen/onbourding_screen.dart';
 import 'package:movies_app/screens/register_page.dart';
-import 'package:movies_app/screens/test_moveis_ui.dart';
+import 'package:movies_app/screens/list_moveis_ui.dart';
 
 void main() {
   runApp(MultiBlocProvider(providers: [

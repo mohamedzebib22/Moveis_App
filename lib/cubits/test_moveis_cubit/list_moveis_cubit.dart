@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:movies_app/core/api/api_consumer.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/core/errors/server_exeptions.dart';
-import 'package:movies_app/cubits/test_moveis_cubit/test_moveis_state.dart';
+import 'package:movies_app/cubits/test_moveis_cubit/list_moveis_state.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 
 class TestMoveisCubit extends Cubit<TestMoveisState> {
