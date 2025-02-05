@@ -2,6 +2,8 @@ class Endpoint {
   static String baseUrl='https://route-movie-apis.vercel.app/';
   static String signIn ='auth/login';
   static String signUp ='auth/register';
+  static String listMoveis = 'list_movies.json';
+  static String baseUrlMoveis ='https://yts.mx/api/v2/';
 }
 
 class ApiKey {

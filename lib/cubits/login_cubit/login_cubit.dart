@@ -9,13 +9,14 @@ import 'package:movies_app/cubits/login_cubit/login_state.dart';
 import 'package:movies_app/models/sign_in_model.dart';
 import 'package:movies_app/screens/forget_password_page.dart';
 import 'package:movies_app/screens/register_page.dart';
+import 'package:movies_app/screens/test_moveis_ui.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.api) : super(LoginInitial());
   final ApiConsumer api;
   var formkey = GlobalKey<FormState>();
 
-  signIn(String email, String password, String baseUrl) async {
+  signIn(String email, String password, String baseUrl,context) async {
     SignInModel user;
     if (formkey.currentState?.validate() == true) {
       try {
@@ -31,6 +32,7 @@ class LoginCubit extends Cubit<LoginState> {
           final decodedToken = JwtDecoder.decode(user.token);
           print('The id is ${decodedToken['id']}===============');
           emit(LoginSuccess());
+          Navigator.pushReplacementNamed(context,TestMoveisUi.id);
           print(response.data.toString());
         } else {
           emit(LoginFailure(errorMessage: "Invalid email or password"));

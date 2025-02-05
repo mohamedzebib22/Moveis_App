@@ -19,8 +19,8 @@ class LoginPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    var email = TextEditingController();
-    var password = TextEditingController();
+    var email = TextEditingController(text: 'mohamed@yahoo.com');
+    var password = TextEditingController(text: '123456789@Aa');
     // var formkey = GlobalKey<FormState>();
 
     return BlocConsumer<LoginCubit, LoginState>(
@@ -102,7 +102,7 @@ class LoginPageBody extends StatelessWidget {
                         title: 'Login',
                         onTap: () {
                           cubit.signIn(
-                              email.text, password.text, Endpoint.baseUrl);
+                              email.text, password.text, Endpoint.baseUrl,context);
                         },
                       ),
                 SizedBox(
