@@ -48,8 +48,10 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
               initialPage: 2,
               onPageChanged: (index, reason) {
                 setState(() {
-                  backGroundImage =
-                      widget.moviesList[index].backgroundImage ?? 'asset/image/intropage3.png';
+                  backGroundImage = widget.moviesList[index].largeCoverImage ??
+                      'asset/image/intropage3.png';
+                  print(
+                      'The image is ${widget.moviesList[index].largeCoverImage}');
                 });
               },
             ),
@@ -57,7 +59,8 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
             itemBuilder: (context, itemIndex, int pageViewIndex) {
               Movies movie = widget.moviesList[itemIndex];
               return ImageListMovies(
-                  imageSrc: movie.backgroundImageOriginal ?? 'asset/image/intropage3.png',
+                  imageSrc:
+                      movie.largeCoverImage ?? 'asset/image/intropage3.png',
                   titleRate: movie.rating ?? 0.0);
             },
           ),
