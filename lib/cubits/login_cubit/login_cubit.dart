@@ -16,7 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
   final ApiConsumer api;
   var formkey = GlobalKey<FormState>();
 
-  signIn(String email, String password, String baseUrl,context) async {
+  signIn(String email, String password, String baseUrl, context) async {
     SignInModel user;
     if (formkey.currentState?.validate() == true) {
       try {
@@ -32,7 +32,7 @@ class LoginCubit extends Cubit<LoginState> {
           final decodedToken = JwtDecoder.decode(user.token);
           print('The id is ${decodedToken['id']}===============');
           emit(LoginSuccess());
-          Navigator.pushReplacementNamed(context,TestMoveisUi.id);
+          Navigator.pushReplacementNamed(context, ListMoveisUi.id);
           print(response.data.toString());
         } else {
           emit(LoginFailure(errorMessage: "Invalid email or password"));
