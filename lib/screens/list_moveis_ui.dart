@@ -30,6 +30,7 @@ class _ListMoveisUiState extends State<ListMoveisUi> {
     var height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black,
         body: BlocBuilder<ListMoveisCubit, ListMoveisState>(
           builder: (context, state) {
             if (state is ListMoveisLoading) {

@@ -17,6 +17,7 @@ class ImageListMovies extends StatelessWidget {
       alignment: AlignmentDirectional.topStart,
       children: [
         Container(
+          margin: EdgeInsets.symmetric(horizontal: width*0.02),
           width: width * 0.50,
           height: height * .50,
           decoration: BoxDecoration(
@@ -32,7 +33,7 @@ class ImageListMovies extends StatelessWidget {
           height: height * 0.03,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.transparent,
+              color: Colors.grey.shade700,
               border: Border.all(color: Colors.yellow, width: 1)),
           child: Row(
             children: [
