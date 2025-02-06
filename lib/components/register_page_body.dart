@@ -1,43 +1,183 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/widgets/already_have_account_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/api/endpoint.dart';
+import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
+
+import 'package:movies_app/models/asset_image.dart';
+import 'package:movies_app/screens/login_page.dart';
+import 'package:movies_app/widgets/create_account_and_log_in_widget.dart';
 import 'package:movies_app/widgets/custom_button.dart';
 import 'package:movies_app/widgets/custom_text_feild.dart';
 
 class RegisterPageBody extends StatelessWidget {
   const RegisterPageBody({super.key});
-  static String id = 'RegisterPage';
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        // leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back), color: Colors.yellow,),
-        title: Center(child: Text('Register', style: TextStyle(fontSize: 16, color: Colors.yellow),)),
-      ),
-      body: SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Image.asset('asset/image/avatar_group.png', height: screenSize.height * 0.2,),
-          Text('Avatar', style: TextStyle(fontSize: 16, color: Colors.white), textAlign: TextAlign.center,),
-          SizedBox(height: 5,),
-          CustomTextFeild(hintText: 'Name', prefix: ImageIcon(AssetImage('asset/icons/icon _username.png'), size: 24, color: Colors.white,),),
-          SizedBox(height: 20,),
-          CustomTextFeild(hintText: 'Email', prefix: ImageIcon(AssetImage('asset/icons/icon_email.png'),size: 24, color: Colors.white,),),
-          SizedBox(height: 20,),
-          CustomTextFeild(hintText: 'Password', prefix: ImageIcon(AssetImage('asset/icons/icon_password.png'),size: 24, color: Colors.white,), sufix: IconButton(onPressed: (){}, icon: ImageIcon(AssetImage('asset/icons/icon _eye off.png'),size: 24, color: Colors.white,),),),
-          SizedBox(height: 20,),
-          CustomTextFeild(hintText: 'Confirm Password', prefix: ImageIcon(AssetImage('asset/icons/icon_password.png'),size: 24, color: Colors.white,), sufix: IconButton(onPressed: (){}, icon: ImageIcon(AssetImage('asset/icons/icon _eye off.png'),size: 24, color: Colors.white,),),),
-          SizedBox(height: 20,),
-          CustomTextFeild(hintText: 'Phone Number', prefix: ImageIcon(AssetImage('asset/icons/icon_phone.png'),size: 24, color: Colors.white,),),
-          CustomButton(title: 'Create Account'),
-          AlreadyHaveAccountWidget()
-        ],
-      ),
+    var name = TextEditingController();
+    var email = TextEditingController();
+    var password = TextEditingController();
+    var confirmPassword = TextEditingController();
+    var phone = TextEditingController();
+
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: width * 0.02, vertical: height * 0.02),
+      child: BlocConsumer<RegisterCubit, RegisterState>(
+        listener: (context, state) {
+          if (state is RegisterSuccess) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text('SignUp Sucsess')));
+          } else if (state is RegisterFailure) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.errorMessage)));
+          }
+        },
+        builder: (context, state) {
+          var cubit = BlocProvider.of<RegisterCubit>(context);
+          return SingleChildScrollView(
+            child: Form(
+              key: cubit.formkey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Image.asset(
+                    'asset/image/avatar_group.png',
+                    height: height * 0.2,
+                  ),
+                  Text(
+                    'Avatar',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  CustomTextFeild(
+                    controller: name,
+                    validator: (name) {
+                      return cubit.validateField(name, 'Please Enter Name');
+                    },
+                    hintText: 'Name',
+                    prefix: ImageIcon(
+                      AssetImage(ImagesApp.userNameIcon),
+                      size: 24,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextFeild(
+                    controller: email,
+                    validator: (email) {
+                      return cubit.validateField(email, 'Please Enter Email');
+                    },
+                    hintText: 'Email',
+                    prefix: ImageIcon(
+                      AssetImage(ImagesApp.emailIcon),
+                      size: 24,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextFeild(
+                    controller: password,
+                    validator: (password) {
+                      return cubit.validateField(
+                          password, 'Please Enter Password');
+                    },
+                    hintText: 'Password',
+                    prefix: ImageIcon(
+                      AssetImage(ImagesApp.paswwordIcon),
+                      size: 24,
+                      color: Colors.white,
+                    ),
+                    sufix: IconButton(
+                      onPressed: () {},
+                      icon: ImageIcon(
+                        AssetImage('asset/icons/icon _eye off.png'),
+                        size: 24,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextFeild(
+                    controller: confirmPassword,
+                    validator: (confirmPassword) {
+                      return cubit.validateField(
+                          confirmPassword, 'Please Enter ConfirmPassword');
+                    },
+                    hintText: 'Confirm Password',
+                    prefix: ImageIcon(
+                      AssetImage(ImagesApp.paswwordIcon),
+                      size: 24,
+                      color: Colors.white,
+                    ),
+                    sufix: IconButton(
+                      onPressed: () {},
+                      icon: ImageIcon(
+                        AssetImage('asset/icons/icon _eye off.png'),
+                        size: 24,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextFeild(
+                    controller: phone,
+                    validator: (phoneNumber) {
+                      return cubit.validateField(
+                          phoneNumber, 'Please Enter PhoneNumber');
+                    },
+                    hintText: 'Phone Number',
+                    prefix: ImageIcon(
+                      AssetImage(ImagesApp.phoneIcon),
+                      size: 24,
+                      color: Colors.white,
+                    ),
+                  ),
+                  state is RegisterLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : CustomButton(
+                          title: 'Create Account',
+                          onTap: () async {
+                            int avatarid = 2;
+
+                            await cubit.signUp(
+                                baseUrl: Endpoint.baseUrl,
+                                name: name.text,
+                                email: email.text,
+                                password: password.text,
+                                confirmPassword: confirmPassword.text,
+                                phone: phone.text,
+                                avaterId: avatarid);
+                            print(
+                                '=============${name.text}\n${email.text}\n${password.text}\n${confirmPassword.text}\n${phone.text}\n${avatarid}\n====');
+                          },
+                        ),
+                  CreateAccountAndLoginWidget(
+                    text1: 'AlreadyHaveAccount?',
+                    text2: 'LogIn',
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, LoginPage.id);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
