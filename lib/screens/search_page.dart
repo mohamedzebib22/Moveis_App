@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ExploreScreen extends StatelessWidget {
-  const ExploreScreen({super.key});
-  static String id ='ExplorePage';
+class SearchPage extends StatelessWidget {
+  const SearchPage({super.key});
+  static String id = 'SearchPage';
 
   @override
   Widget build(BuildContext context) {
