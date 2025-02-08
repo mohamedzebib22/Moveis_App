@@ -101,7 +101,7 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

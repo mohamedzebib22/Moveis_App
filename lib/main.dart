@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/components/bottom_navigation_bar.dart';
 import 'package:movies_app/core/api/dio_consumer.dart';
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_cubit.dart';
 
@@ -18,7 +19,8 @@ import 'package:movies_app/screens/onbourding_screen/onbourding_screen.dart';
 import 'package:movies_app/screens/register_page.dart';
 import 'package:movies_app/screens/list_moveis_ui.dart';
 import 'package:movies_app/screens/search_page.dart';
-import 'package:movies_app/screens/update_profile_page.dart';
+import 'package:movies_app/screens/updateProfile.dart';
+
 
 void main() {
   runApp(MultiBlocProvider(providers: [
@@ -42,14 +44,14 @@ class MoviesApp extends StatelessWidget {
         HomePage.id: (context) => HomePage(),
         RegisterPage.id: (context) => RegisterPage(),
         ForgetPasswordPage.id: (context) => ForgetPasswordPage(),
-        ListMoveisUi.id: (context) => ListMoveisUi()
-        // SearchPage.id: (context) => SearchPage()
-        // ExplorePage.id: (context) => ExplorePage()
-        // UpdateProfilePage.id: (context) => UpdateProfilePage()
+        ListMoveisUi.id: (context) => ListMoveisUi(),
+        SearchPage.id: (context) => SearchPage(),
+        ExplorePage.id: (context) => ExplorePage(),
+        UpddateProfile.id: (context) => UpddateProfile(),
+        DefualtPage.id : (context) => DefualtPage(),
       },
       debugShowCheckedModeBanner: false,
-      // initialRoute: InroPage.id,
-      initialRoute: ListMoveisUi.id,
+      initialRoute: InroPage.id,
     );
   }
 }

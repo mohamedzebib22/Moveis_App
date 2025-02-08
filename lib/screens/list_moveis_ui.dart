@@ -8,9 +8,6 @@ import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_cubit.dart';
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_state.dart';
 import 'package:movies_app/models/asset_image.dart';
 import 'package:movies_app/models/movies_list_model.dart';
-import 'package:movies_app/screens/explore_page.dart';
-import 'package:movies_app/screens/search_page.dart';
-import 'package:movies_app/screens/update_profile_page.dart';
 import 'package:movies_app/widgets/image_list_movies.dart';
 
 class ListMoveisUi extends StatefulWidget {
@@ -22,14 +19,6 @@ class ListMoveisUi extends StatefulWidget {
 }
 
 class _ListMoveisUiState extends State<ListMoveisUi> {
-  int currentIndex = 0;
-  List<Widget> body = [
-    ListMoveisUi(),
-    SearchPage(),
-    ExplorePage(),
-    UpdateProfilePage(),
-  ];
-
   void initState() {
     super.initState();
     BlocProvider.of<ListMoveisCubit>(context).getMoveis(Endpoint.baseUrlMoveis);
@@ -70,49 +59,6 @@ class _ListMoveisUiState extends State<ListMoveisUi> {
             );
           },
         ),
-
-
-
-
-
-
-        bottomNavigationBar: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        padding: EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          color: Color(0xff282A28),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Color(0xff282A28),
-          selectedItemColor: Colors.yellow,
-          unselectedItemColor: Colors.white,
-          elevation: 0,
-          currentIndex:currentIndex,
-          onTap: (int newIndex){
-            setState(() {
-              currentIndex = newIndex;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(icon: ImageIcon(AssetImage('asset/icons/home.png')), label: ''),
-            BottomNavigationBarItem(icon: ImageIcon(AssetImage('asset/icons/search.png')), label: ''),
-            BottomNavigationBarItem(icon: ImageIcon(AssetImage('asset/icons/explore.png')), label: ''),
-            BottomNavigationBarItem(icon: ImageIcon(AssetImage('asset/icons/Profiel.png')), label: ''),
-          ],
-        ),
-      ),
-
-
-
-
-          // body[currentIndex],
-
-
-
-
-
       ),
     );
   }
