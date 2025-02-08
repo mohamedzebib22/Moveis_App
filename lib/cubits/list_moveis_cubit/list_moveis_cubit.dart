@@ -6,17 +6,19 @@ import 'package:meta/meta.dart';
 import 'package:movies_app/core/api/api_consumer.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/core/errors/server_exeptions.dart';
-import 'package:movies_app/cubits/test_moveis_cubit/list_moveis_state.dart';
+import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_state.dart';
+import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_state.dart';
+import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_state.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 
-class TestMoveisCubit extends Cubit<TestMoveisState> {
+class ListMoveisCubit extends Cubit<ListMoveisState> {
   final ApiConsumer api;
 
-  TestMoveisCubit(this.api) : super(TestMoveisInitial());
+  ListMoveisCubit(this.api) : super(ListMoveisInitial());
 
   Future<dynamic> getMoveis(String baseUrl) async {
     try {
-      emit(TestMoveisLoading());
+      emit(ListMoveisLoading());
       Response response = await api.get(
         baseUrl,
         Endpoint.listMoveis,
@@ -28,29 +30,30 @@ class TestMoveisCubit extends Cubit<TestMoveisState> {
 
         if (response.data is String) {
           //var decodedData = jsonDecode(response.data);
-          MoviesListModel moviesList = MoviesListModel.fromJson(jsonDecode(response.data));
+          MoviesListModel moviesList =
+              MoviesListModel.fromJson(jsonDecode(response.data));
 
-          emit(TestMoveisSucsess(moveisList: moviesList.data!.movies!));
+          emit(ListMoveisSucsess(moveisList: moviesList.data!.movies!));
           return moviesList;
         } else if (response.data is Map<String, dynamic>) {
           MoviesListModel moviesList = MoviesListModel.fromJson(response.data);
-          emit(TestMoveisSucsess(moveisList: moviesList.data!.movies!));
+          emit(ListMoveisSucsess(moveisList: moviesList.data!.movies!));
           return moviesList;
         } else {
-          emit(TestMoveisFaliure(errorMessage: "Unexpected response format"));
+          emit(ListMoveisFaliure(errorMessage: "Unexpected response format"));
           return null;
         }
       } else {
-        emit(TestMoveisFaliure(
+        emit(ListMoveisFaliure(
             errorMessage: response.statusMessage ?? "Unknown error"));
         print(
             '===== Error Response: ${response.statusMessage ?? "Unknown error"}');
       }
     } on ServerExeptions catch (e) {
-      emit(TestMoveisFaliure(errorMessage: e.errorModel.message));
+      emit(ListMoveisFaliure(errorMessage: e.errorModel.message));
       print('===== Server Error: ${e.errorModel.message}');
     } catch (e) {
-      emit(TestMoveisFaliure(errorMessage: e.toString()));
+      emit(ListMoveisFaliure(errorMessage: e.toString()));
       print('===== General Error: ${e.toString()}');
     }
   }

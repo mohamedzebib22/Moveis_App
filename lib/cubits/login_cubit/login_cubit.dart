@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:movies_app/components/bottom_navigation_bar.dart';
 import 'package:movies_app/core/api/api_consumer.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/core/errors/server_exeptions.dart';
@@ -16,7 +17,7 @@ class LoginCubit extends Cubit<LoginState> {
   final ApiConsumer api;
   var formkey = GlobalKey<FormState>();
 
-  signIn(String email, String password, String baseUrl,context) async {
+  signIn(String email, String password, String baseUrl, context) async {
     SignInModel user;
     if (formkey.currentState?.validate() == true) {
       try {
@@ -32,7 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
           final decodedToken = JwtDecoder.decode(user.token);
           print('The id is ${decodedToken['id']}===============');
           emit(LoginSuccess());
-          Navigator.pushReplacementNamed(context,TestMoveisUi.id);
+          Navigator.pushReplacementNamed(context, DefualtPage.id);
           print(response.data.toString());
         } else {
           emit(LoginFailure(errorMessage: "Invalid email or password"));
