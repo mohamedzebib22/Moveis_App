@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/custom_button.dart';
-import 'package:movies/custom_text_feild.dart';
+
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_feild.dart';
+
 
 class UpddateProfile extends StatelessWidget {
   static const String routeName = 'UpddateProfile';

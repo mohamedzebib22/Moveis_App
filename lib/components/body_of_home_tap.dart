@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider/carousel_options.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/asset_image.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 import 'package:movies_app/widgets/image_list_movies.dart';
+
 
 class BodyOfHomeTap extends StatefulWidget {
   const BodyOfHomeTap({

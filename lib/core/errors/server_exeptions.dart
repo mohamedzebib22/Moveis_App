@@ -37,6 +37,7 @@ class ServerExeptions implements Exception {
           throw ServerExeptions(errorModel: ErrorModel.fromJson(e.response!.data));
           case 401 :
             print(e.message);
+            break;
           case 403 :
           throw ServerExeptions(errorModel: ErrorModel.fromJson(e.response!.data));
           case 404 :
