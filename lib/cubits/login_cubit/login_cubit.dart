@@ -27,9 +27,10 @@ class LoginCubit extends Cubit<LoginState> {
           Endpoint.signIn,
           data: {ApiKey.email: email, ApiKey.password: password},
         );
-
+        
         if (response.statusCode == 200) {
           user = SignInModel.fromJson(response.data);
+          
           final decodedToken = JwtDecoder.decode(user.token);
           print('The id is ${decodedToken['id']}===============');
           emit(LoginSuccess());

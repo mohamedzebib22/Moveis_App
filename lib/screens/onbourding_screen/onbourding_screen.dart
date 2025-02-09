@@ -30,14 +30,14 @@ class OnbourdingScreen extends StatelessWidget {
                     fit: BoxFit.fill,
                   )),
               child: cubit.selectIndex == 0
-                  ? CustomBottomSheet(
+                  ? CustomBottomSheetOnBourding(
                       title: currentContent['title']!,
                       supTitle: currentContent['subtitle']!,
                       onNextTap: () {
                         cubit.onFirstClick();
                       },
                     )
-                  : CustomBottomSheet(
+                  : CustomBottomSheetOnBourding(
                       title: currentContent['title']!,
                       supTitle: currentContent['subtitle']!,
                       onNextTap: () {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/components/bottom_navigation_bar.dart';
 import 'package:movies_app/core/api/dio_consumer.dart';
+import 'package:movies_app/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_cubit.dart';
 
 import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
@@ -25,6 +26,7 @@ import 'package:movies_app/screens/updateProfile.dart';
 void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => OnbourdingCubit()),
+    BlocProvider(create: (context) => UpdateProfileCubit()),
     BlocProvider(create: (context) => LoginCubit(DioConsumer(dio: Dio()))),
     BlocProvider(create: (context) => RegisterCubit(DioConsumer(dio: Dio()))),
     BlocProvider(create: (context) => ListMoveisCubit(DioConsumer(dio: Dio()))),
@@ -51,7 +53,6 @@ class MoviesApp extends StatelessWidget {
         DefualtPage.id : (context) => DefualtPage(),
       },
       debugShowCheckedModeBanner: false,
-      // initialRoute: InroPage.id,
       initialRoute: InroPage.id,
     );
   }
