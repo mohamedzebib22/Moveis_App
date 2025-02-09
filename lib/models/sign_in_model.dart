@@ -1,3 +1,5 @@
+import 'package:movies_app/core/api/endpoint.dart';
+
 class SignInModel {
   final String message;
   final String token;
@@ -6,7 +8,7 @@ class SignInModel {
 
   factory SignInModel.fromJson(Map<String, dynamic> jsonData){
     return SignInModel(
-      message: jsonData['message'],
-     token: jsonData['data']);
+      message: jsonData[ApiKey.message],
+     token: jsonData[ApiKey.token]);
   }
 }

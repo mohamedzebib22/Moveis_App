@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/components/bottom_navigation_bar.dart';
 import 'package:movies_app/core/api/dio_consumer.dart';
+import 'package:movies_app/core/helper/cach_helper.dart';
 import 'package:movies_app/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_cubit.dart';
 
@@ -23,7 +24,9 @@ import 'package:movies_app/screens/search_page.dart';
 import 'package:movies_app/screens/updateProfile.dart';
 
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  CachHelper().init();
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => OnbourdingCubit()),
     BlocProvider(create: (context) => UpdateProfileCubit()),

@@ -35,7 +35,8 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
       child: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(backGroundImage), fit: BoxFit.fill)),
+                image: backGroundImage.isEmpty || backGroundImage == null ?AssetImage('asset/image/intropage6.png'):
+                NetworkImage(backGroundImage), fit: BoxFit.fill)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

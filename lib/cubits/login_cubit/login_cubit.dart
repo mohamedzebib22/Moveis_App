@@ -6,6 +6,7 @@ import 'package:movies_app/components/bottom_navigation_bar.dart';
 import 'package:movies_app/core/api/api_consumer.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/core/errors/server_exeptions.dart';
+import 'package:movies_app/core/helper/cach_helper.dart';
 import 'package:movies_app/cubits/login_cubit/login_state.dart';
 import 'package:movies_app/models/sign_in_model.dart';
 import 'package:movies_app/screens/forget_password_page.dart';
@@ -18,7 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
   var formkey = GlobalKey<FormState>();
 
   signIn(String email, String password, String baseUrl, context) async {
-    SignInModel user;
+    SignInModel? user;
     if (formkey.currentState?.validate() == true) {
       try {
         emit(LoginLoading());
@@ -32,6 +33,8 @@ class LoginCubit extends Cubit<LoginState> {
           user = SignInModel.fromJson(response.data);
           
           final decodedToken = JwtDecoder.decode(user.token);
+          CachHelper().saveData(key:ApiKey.token,value: user.token );
+          CachHelper().saveData(key:ApiKey.id,value: decodedToken[ApiKey.id] );
           print('The id is ${decodedToken['id']}===============');
           emit(LoginSuccess());
           Navigator.pushReplacementNamed(context, DefualtPage.id);

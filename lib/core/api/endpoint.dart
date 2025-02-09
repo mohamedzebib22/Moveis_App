@@ -14,5 +14,9 @@ class ApiKey {
   static String name ='name';
   static String confirmPassword ='confirmPassword';
   static String phone = 'phone';
+  static String token ='data';
+  static String message ='message';
+  static String id ='id';
+
   
 }
