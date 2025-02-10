@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/asset_image.dart';
 import 'package:movies_app/models/movies_list_model.dart';
+import 'package:movies_app/screens/movies_details_ui.dart';
 import 'package:movies_app/widgets/image_list_movies.dart';
 
 class BodyOfHomeTap extends StatefulWidget {
@@ -62,16 +63,25 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
                             'asset/image/intropage3.png';
                     print(
                         'The image is ${widget.moviesList[index].largeCoverImage}');
+                        print(
+                        'The id is ${widget.moviesList[index].id}');
+                        print(
+                        'The index is ${index}');
                   });
                 },
               ),
               itemCount: widget.moviesList.length,
               itemBuilder: (context, itemIndex, int pageViewIndex) {
                 Movies movie = widget.moviesList[itemIndex];
-                return ImageListMovies(
-                    imageSrc:
-                        movie.largeCoverImage ?? 'asset/image/intropage3.png',
-                    titleRate: movie.rating ?? 0.0);
+                return InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, MoviesDetailsUi.id  ,arguments: widget.moviesList[itemIndex]);
+                  },
+                  child: ImageListMovies(
+                      imageSrc:
+                          movie.largeCoverImage ?? 'asset/image/intropage3.png',
+                      titleRate: movie.rating ?? 0.0),
+                );
               },
             ),
             Image.asset(

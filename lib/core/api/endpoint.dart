@@ -4,6 +4,9 @@ class Endpoint {
   static String signUp ='auth/register';
   static String listMoveis = 'list_movies.json';
   static String baseUrlMoveis ='https://yts.mx/api/v2/';
+  static String moveisDetails ='movie_details.json';
+  
+  
 }
 
 class ApiKey {

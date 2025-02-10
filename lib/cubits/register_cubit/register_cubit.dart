@@ -56,6 +56,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       }
     }
   }
+  
   void updateAvatar(int newAvatar){
     avatarNumber =newAvatar;
     emit(RegisterChangeAvatar());
