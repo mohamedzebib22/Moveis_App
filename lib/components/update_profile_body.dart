@@ -47,7 +47,12 @@ class UpdateProfileBody extends StatelessWidget {
                               }),
                         );
                       },
-                      child: Image.asset(cubit.currentAvatar),
+                      child: Image.asset(
+                        cubit.currentAvatar,
+                        width: width * 0.36,
+                        height: height * 0.17,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     const SizedBox(
                       height: 20,

@@ -12,7 +12,8 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit(this.api) : super(RegisterInitial());
   final ApiConsumer api;
   var formkey = GlobalKey<FormState>();
-
+  
+  var avatarNumber =2;
   String? validateField(String? title, String errorMessage) {
     if (title == null || title.isEmpty) {
       return errorMessage;
@@ -54,5 +55,9 @@ class RegisterCubit extends Cubit<RegisterState> {
         emit(RegisterFailure(errorMessage: e.toString()));
       }
     }
+  }
+  void updateAvatar(int newAvatar){
+    avatarNumber =newAvatar;
+    emit(RegisterChangeAvatar());
   }
 }
