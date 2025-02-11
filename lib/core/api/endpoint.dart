@@ -5,6 +5,7 @@ class Endpoint {
   static String listMoveis = 'list_movies.json';
   static String baseUrlMoveis ='https://yts.mx/api/v2/';
   static String moveisDetails ='movie_details.json';
+  static String moviesSuggetion ='movie_suggestions.json';
   
   
 }

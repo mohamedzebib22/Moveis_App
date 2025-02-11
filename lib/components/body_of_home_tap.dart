@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/cubits/movies_details_cubit/movies_details_cubit.dart';
 import 'package:movies_app/models/asset_image.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 import 'package:movies_app/screens/movies_details_ui.dart';
@@ -75,7 +77,7 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
                 Movies movie = widget.moviesList[itemIndex];
                 return InkWell(
                   onTap: (){
-                    Navigator.pushNamed(context, MoviesDetailsUi.id  ,arguments: widget.moviesList[itemIndex]);
+                    BlocProvider.of<MoviesDetailsCubit>(context).navigateToDetailsScreen(movie, context);
                   },
                   child: ImageListMovies(
                       imageSrc:
@@ -105,10 +107,15 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
                 itemCount: filteredMovies.length,
                 itemBuilder: (context, index) {
                   Movies movie = filteredMovies[index];
-                  return ImageListMovies(
-                    imageSrc:
-                        movie.largeCoverImage ?? 'asset/image/default.png',
-                    titleRate: movie.rating ?? 0.0,
+                  return InkWell(
+                    onTap: (){
+                      BlocProvider.of<MoviesDetailsCubit>(context).navigateToDetailsScreen(movie, context);
+                    },
+                    child: ImageListMovies(
+                      imageSrc:
+                          movie.largeCoverImage ?? 'asset/image/default.png',
+                      titleRate: movie.rating ?? 0.0,
+                    ),
                   );
                 },
               ),

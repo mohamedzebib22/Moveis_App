@@ -1,10 +1,10 @@
-class MovisDetails {
-  MovisDetails({
+class MoviesSuggestion {
+  MoviesSuggestion({
       this.status, 
       this.statusMessage, 
       this.data,});
 
-  MovisDetails.fromJson(dynamic json) {
+  MoviesSuggestion.fromJson(dynamic json) {
     status = json['status'];
     statusMessage = json['status_message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -27,25 +27,34 @@ class MovisDetails {
 
 class Data {
   Data({
-      this.movie,});
+      this.movieCount, 
+      this.moviesSuggestion,});
 
   Data.fromJson(dynamic json) {
-    movie = json['movie'] != null ? Movie.fromJson(json['movie']) : null;
+    movieCount = json['movie_count'];
+    if (json['movies'] != null) {
+      moviesSuggestion = [];
+      json['movies'].forEach((v) {
+        moviesSuggestion?.add(Suggestion.fromJson(v));
+      });
+    }
   }
-  Movie? movie;
+  int? movieCount;
+  List<Suggestion>? moviesSuggestion;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (movie != null) {
-      map['movie'] = movie?.toJson();
+    map['movie_count'] = movieCount;
+    if (moviesSuggestion != null) {
+      map['movies'] = moviesSuggestion?.map((v) => v.toJson()).toList();
     }
     return map;
   }
 
 }
 
-class Movie {
-  Movie({
+class Suggestion {
+  Suggestion({
       this.id, 
       this.url, 
       this.imdbCode, 
@@ -57,9 +66,9 @@ class Movie {
       this.rating, 
       this.runtime, 
       this.genres, 
-      this.likeCount, 
-      this.descriptionIntro, 
+      this.summary, 
       this.descriptionFull, 
+      this.synopsis, 
       this.ytTrailerCode, 
       this.language, 
       this.mpaRating, 
@@ -67,12 +76,12 @@ class Movie {
       this.backgroundImageOriginal, 
       this.smallCoverImage, 
       this.mediumCoverImage, 
-      this.largeCoverImage, 
+      this.state, 
       this.torrents, 
       this.dateUploaded, 
       this.dateUploadedUnix,});
 
-  Movie.fromJson(dynamic json) {
+  Suggestion.fromJson(dynamic json) {
     id = json['id'];
     url = json['url'];
     imdbCode = json['imdb_code'];
@@ -84,9 +93,9 @@ class Movie {
     rating = json['rating'];
     runtime = json['runtime'];
     genres = json['genres'] != null ? json['genres'].cast<String>() : [];
-    likeCount = json['like_count'];
-    descriptionIntro = json['description_intro'];
+    summary = json['summary'];
     descriptionFull = json['description_full'];
+    synopsis = json['synopsis'];
     ytTrailerCode = json['yt_trailer_code'];
     language = json['language'];
     mpaRating = json['mpa_rating'];
@@ -94,7 +103,7 @@ class Movie {
     backgroundImageOriginal = json['background_image_original'];
     smallCoverImage = json['small_cover_image'];
     mediumCoverImage = json['medium_cover_image'];
-    largeCoverImage = json['large_cover_image'];
+    state = json['state'];
     if (json['torrents'] != null) {
       torrents = [];
       json['torrents'].forEach((v) {
@@ -112,12 +121,12 @@ class Movie {
   String? titleLong;
   String? slug;
   int? year;
-  int? rating;
+  double? rating;
   int? runtime;
   List<String>? genres;
-  int? likeCount;
-  String? descriptionIntro;
+  String? summary;
   String? descriptionFull;
+  String? synopsis;
   String? ytTrailerCode;
   String? language;
   String? mpaRating;
@@ -125,7 +134,7 @@ class Movie {
   String? backgroundImageOriginal;
   String? smallCoverImage;
   String? mediumCoverImage;
-  String? largeCoverImage;
+  String? state;
   List<Torrents>? torrents;
   String? dateUploaded;
   int? dateUploadedUnix;
@@ -143,9 +152,9 @@ class Movie {
     map['rating'] = rating;
     map['runtime'] = runtime;
     map['genres'] = genres;
-    map['like_count'] = likeCount;
-    map['description_intro'] = descriptionIntro;
+    map['summary'] = summary;
     map['description_full'] = descriptionFull;
+    map['synopsis'] = synopsis;
     map['yt_trailer_code'] = ytTrailerCode;
     map['language'] = language;
     map['mpa_rating'] = mpaRating;
@@ -153,7 +162,7 @@ class Movie {
     map['background_image_original'] = backgroundImageOriginal;
     map['small_cover_image'] = smallCoverImage;
     map['medium_cover_image'] = mediumCoverImage;
-    map['large_cover_image'] = largeCoverImage;
+    map['state'] = state;
     if (torrents != null) {
       map['torrents'] = torrents?.map((v) => v.toJson()).toList();
     }
@@ -169,7 +178,6 @@ class Torrents {
       this.url, 
       this.hash, 
       this.quality, 
-      this.type, 
       this.isRepack, 
       this.videoCodec, 
       this.bitDepth, 
@@ -185,7 +193,6 @@ class Torrents {
     url = json['url'];
     hash = json['hash'];
     quality = json['quality'];
-    type = json['type'];
     isRepack = json['is_repack'];
     videoCodec = json['video_codec'];
     bitDepth = json['bit_depth'];
@@ -200,7 +207,6 @@ class Torrents {
   String? url;
   String? hash;
   String? quality;
-  String? type;
   String? isRepack;
   String? videoCodec;
   String? bitDepth;
@@ -217,7 +223,6 @@ class Torrents {
     map['url'] = url;
     map['hash'] = hash;
     map['quality'] = quality;
-    map['type'] = type;
     map['is_repack'] = isRepack;
     map['video_codec'] = videoCodec;
     map['bit_depth'] = bitDepth;

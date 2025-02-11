@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,8 @@ import 'package:movies_app/cubits/movies_details_cubit/movies_details_state.dart
 import 'package:movies_app/models/asset_style.dart';
 import 'package:movies_app/models/movies_details.dart';
 import 'package:movies_app/models/movies_list_model.dart';
+import 'package:movies_app/models/movies_suggestion.dart';
+import 'package:movies_app/widgets/image_list_movies.dart';
 
 class MoviesDetailsUi extends StatefulWidget {
   const MoviesDetailsUi({super.key});
@@ -25,6 +28,9 @@ class _MoviesDetailsUiState extends State<MoviesDetailsUi> {
     int id = args.id!;
     print('********The id is ${id}********');
     BlocProvider.of<MoviesDetailsCubit>(context).getMoveisDetails(id: id);
+    //-----------------------------------------------
+    BlocProvider.of<MoviesDetailsCubit>(context).getMoviesSuggesion(id: id);
+
     return Scaffold(
       body: BlocBuilder<MoviesDetailsCubit, MoviesDetailsState>(
         builder: (context, state) {
@@ -33,33 +39,31 @@ class _MoviesDetailsUiState extends State<MoviesDetailsUi> {
               child: CircularProgressIndicator(),
             );
           } else if (state is MoviesDetailSucsess) {
-            print('Image URL: ${state.moveisList.largeCoverImage}');
-            print('Description: ${state.moveisList.descriptionFull}');
+            // print('Image URL: ${state.moveisDetails}');
+            // print('Description: ${state.moveisDetails!.descriptionFull}');
             return Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(args.largeCoverImage!),
                       fit: BoxFit.fill)),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'defult',
-                    style: AssetStyle.bold20white,
-                  ),
-                  Expanded(
-                      child: ListView.builder(
-                          itemCount: 2,
-                          itemBuilder: (context, index) {
-                            return Text(
-                              args.descriptionFull ??'' ,
-                              style: TextStyle(color: Colors.red,fontSize: 20),
-                            );
-                          }))
-                ],
+                      child:CarouselSlider.builder(
+              options: CarouselOptions(
+                autoPlay: false,
+                enlargeCenterPage: true,
+                viewportFraction: 0.5,
+                aspectRatio: 16 / 15,
+                initialPage: 2,
+                
               ),
+              itemCount: state.suggestionList!.length,
+              itemBuilder: (context, itemIndex, int pageViewIndex) {
+               Suggestion movieSuggestion = state.suggestionList![itemIndex];
+                return ImageListMovies(
+                    imageSrc:
+                        movieSuggestion.mediumCoverImage ?? 'asset/image/intropage3.png',
+                    titleRate: movieSuggestion.rating ?? 0.0);
+              },
+            ), 
             );
           } else if (state is MoviesDetailFaliure) {
             print('Error: ${state.errorMessage}');
