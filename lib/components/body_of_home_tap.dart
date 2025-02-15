@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/cubits/movies_details_cubit/movies_details_cubit.dart';
 import 'package:movies_app/models/asset_image.dart';
+import 'package:movies_app/models/movies_details.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 import 'package:movies_app/screens/movies_details_ui.dart';
 import 'package:movies_app/widgets/image_list_movies.dart';
@@ -75,6 +76,7 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
               itemCount: widget.moviesList.length,
               itemBuilder: (context, itemIndex, int pageViewIndex) {
                 Movies movie = widget.moviesList[itemIndex];
+                
                 return InkWell(
                   onTap: (){
                     BlocProvider.of<MoviesDetailsCubit>(context).navigateToDetailsScreen(movie, context);

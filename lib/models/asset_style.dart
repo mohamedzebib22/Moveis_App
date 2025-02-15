@@ -7,4 +7,5 @@ class AssetStyle {
   static TextStyle bold20white = TextStyle(color: Colors.white ,fontWeight: FontWeight.bold ,fontSize: 20);
   static TextStyle regular14Yellow = TextStyle(color: Colors.yellow ,fontWeight: FontWeight.w400 ,fontSize: 14);
   static TextStyle regular14white = TextStyle(color: Colors.white ,fontWeight: FontWeight.w400 ,fontSize: 14);
+  static TextStyle regular18grey = TextStyle(color: Colors.grey ,fontWeight: FontWeight.w600 ,fontSize: 18);
 }

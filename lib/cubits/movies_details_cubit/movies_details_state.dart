@@ -9,9 +9,9 @@ abstract class MoviesDetailsState {}
  class MoviesDetailsInitial extends MoviesDetailsState {}
  class MoviesDetailsLoading extends MoviesDetailsState {}
  class MoviesDetailSucsess extends MoviesDetailsState {
-Movie? moveisDetails;
+Movie? detailsMovie;
 List<Suggestion>? suggestionList ;
-MoviesDetailSucsess({ this.moveisDetails, this.suggestionList});
+MoviesDetailSucsess({ this.detailsMovie, this.suggestionList});
  }
  class MoviesDetailFaliure extends MoviesDetailsState {
    String errorMessage;
