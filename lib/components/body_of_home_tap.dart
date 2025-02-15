@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/cubits/movies_details_cubit/movies_details_cubit.dart';
 import 'package:movies_app/models/asset_image.dart';
 import 'package:movies_app/models/movies_list_model.dart';
+import 'package:movies_app/screens/movies_details_ui.dart';
 import 'package:movies_app/widgets/image_list_movies.dart';
 
 class BodyOfHomeTap extends StatefulWidget {
@@ -35,7 +38,8 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
       child: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(backGroundImage), fit: BoxFit.fill)),
+                image: backGroundImage.isEmpty || backGroundImage == null ?AssetImage('asset/image/intropage6.png'):
+                NetworkImage(backGroundImage), fit: BoxFit.fill)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -61,16 +65,25 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
                             'asset/image/intropage3.png';
                     print(
                         'The image is ${widget.moviesList[index].largeCoverImage}');
+                        print(
+                        'The id is ${widget.moviesList[index].id}');
+                        print(
+                        'The index is ${index}');
                   });
                 },
               ),
               itemCount: widget.moviesList.length,
               itemBuilder: (context, itemIndex, int pageViewIndex) {
                 Movies movie = widget.moviesList[itemIndex];
-                return ImageListMovies(
-                    imageSrc:
-                        movie.largeCoverImage ?? 'asset/image/intropage3.png',
-                    titleRate: movie.rating ?? 0.0);
+                return InkWell(
+                  onTap: (){
+                    BlocProvider.of<MoviesDetailsCubit>(context).navigateToDetailsScreen(movie, context);
+                  },
+                  child: ImageListMovies(
+                      imageSrc:
+                          movie.largeCoverImage ?? 'asset/image/intropage3.png',
+                      titleRate: movie.rating ?? 0.0),
+                );
               },
             ),
             Image.asset(
@@ -94,10 +107,15 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
                 itemCount: filteredMovies.length,
                 itemBuilder: (context, index) {
                   Movies movie = filteredMovies[index];
-                  return ImageListMovies(
-                    imageSrc:
-                        movie.largeCoverImage ?? 'asset/image/default.png',
-                    titleRate: movie.rating ?? 0.0,
+                  return InkWell(
+                    onTap: (){
+                      BlocProvider.of<MoviesDetailsCubit>(context).navigateToDetailsScreen(movie, context);
+                    },
+                    child: ImageListMovies(
+                      imageSrc:
+                          movie.largeCoverImage ?? 'asset/image/default.png',
+                      titleRate: movie.rating ?? 0.0,
+                    ),
                   );
                 },
               ),

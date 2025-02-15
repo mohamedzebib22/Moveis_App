@@ -1,12 +1,15 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
 
 import 'package:movies_app/models/asset_image.dart';
+import 'package:movies_app/models/avatar_image_list.dart';
 import 'package:movies_app/screens/login_page.dart';
 import 'package:movies_app/widgets/create_account_and_log_in_widget.dart';
 import 'package:movies_app/widgets/custom_button.dart';
+import 'package:movies_app/widgets/custom_pick_avatar.dart';
 import 'package:movies_app/widgets/custom_text_feild.dart';
 
 class RegisterPageBody extends StatelessWidget {
@@ -44,10 +47,39 @@ class RegisterPageBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Image.asset(
-                    'asset/image/avatar_group.png',
-                    height: height * 0.2,
+                  CarouselSlider.builder(
+                    options: CarouselOptions(
+                      autoPlay: false,
+                      enlargeCenterPage: true,
+                      viewportFraction: 0.4,
+                      aspectRatio: 10 / 5,
+                      initialPage: 2,
+                      onPageChanged: (index, reason) {
+                        cubit.updateAvatar(index);
+                      },
+                    ),
+                    itemCount: AvatarImageList.imageListAvatar.length,
+                    itemBuilder: (context, itemIndex, int pageViewIndex) {
+                      return CircleAvatar(
+                        radius: 90,
+                        backgroundColor:Colors.transparent,
+                        child: CustomPickAvatar(
+                          isBorder: false,
+                            width: width,
+                            height: height,
+                            image: AvatarImageList
+                                .imageListAvatar[itemIndex].image),
+                      );
+                    },
                   ),
+
+
+                  // Image.asset(
+                  //   'asset/image/avatar_group.png',
+                  //   height: height * 0.2,
+                  // ),
+
+
                   Text(
                     'Avatar',
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -152,7 +184,7 @@ class RegisterPageBody extends StatelessWidget {
                       : CustomButton(
                           title: 'Create Account',
                           onTap: () async {
-                            int avatarid = 2;
+                            int avatarid = cubit.avatarNumber;
 
                             await cubit.signUp(
                                 baseUrl: Endpoint.baseUrl,
@@ -161,9 +193,9 @@ class RegisterPageBody extends StatelessWidget {
                                 password: password.text,
                                 confirmPassword: confirmPassword.text,
                                 phone: phone.text,
-                                avaterId: avatarid);
+                                avaterId:avatarid);
                             print(
-                                '=============${name.text}\n${email.text}\n${password.text}\n${confirmPassword.text}\n${phone.text}\n${avatarid}\n====');
+                                '=============${name.text}\n${email.text}\n${password.text}\n${confirmPassword.text}\n${phone.text}\n*********${cubit.avatarNumber}********\n====');
                           },
                         ),
                   CreateAccountAndLoginWidget(
