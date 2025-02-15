@@ -24,6 +24,7 @@ import 'package:movies_app/screens/register_page.dart';
 import 'package:movies_app/screens/list_moveis_ui.dart';
 import 'package:movies_app/screens/search_page.dart';
 import 'package:movies_app/screens/updateProfile.dart';
+import 'package:movies_app/screens/web_view_page.dart';
 
 
 void main()async {
@@ -57,7 +58,8 @@ class MoviesApp extends StatelessWidget {
         ExplorePage.id: (context) => ExplorePage(),
         UpddateProfile.id: (context) => UpddateProfile(),
         DefualtPage.id : (context) => DefualtPage(),
-        MoviesDetailsUi.id : (context) => MoviesDetailsUi()
+        MoviesDetailsUi.id : (context) => MoviesDetailsUi(),
+        WebviewScreen.id : (context) => WebviewScreen()
       },
       debugShowCheckedModeBanner: false,
       initialRoute: InroPage.id,
