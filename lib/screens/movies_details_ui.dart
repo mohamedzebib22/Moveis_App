@@ -42,7 +42,7 @@ class _MoviesDetailsUiState extends State<MoviesDetailsUi> {
       body: BlocBuilder<MoviesDetailsCubit, MoviesDetailsState>(
         builder: (context, state) {
           if (state is MoviesDetailsLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is MoviesDetailSucsess) {

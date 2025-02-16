@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/components/bottom_navigation_bar.dart';
 import 'package:movies_app/core/api/dio_consumer.dart';
 import 'package:movies_app/core/helper/cach_helper.dart';
+import 'package:movies_app/cubits/category_movies_cubit/category_movies_cubit.dart';
 import 'package:movies_app/cubits/movies_details_cubit/movies_details_cubit.dart';
 import 'package:movies_app/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_cubit.dart';
@@ -12,7 +13,7 @@ import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
 import 'package:movies_app/cubits/login_cubit/login_cubit.dart';
 import 'package:movies_app/cubits/onbourding_cubit/onbourding_cubit.dart';
 import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
-import 'package:movies_app/screens/category_page_movies.dart';
+
 import 'package:movies_app/screens/explore_page.dart';
 
 import 'package:movies_app/screens/forget_password_page.dart';
@@ -38,6 +39,7 @@ void main()async {
     BlocProvider(create: (context) => RegisterCubit(DioConsumer(dio: Dio()))),
     BlocProvider(create: (context) => ListMoveisCubit(DioConsumer(dio: Dio()))),
     BlocProvider(create: (context) => MoviesDetailsCubit(DioConsumer(dio: Dio()))),
+    BlocProvider(create: (context) => CategoryMoviesCubit(DioConsumer(dio: Dio()))),
   ], child: const MoviesApp()));
 }
 
@@ -61,7 +63,7 @@ class MoviesApp extends StatelessWidget {
         DefualtPage.id : (context) => DefualtPage(),
         MoviesDetailsUi.id : (context) => MoviesDetailsUi(),
         WebviewScreen.id : (context) => WebviewScreen(),
-        CategoryPageMovies.id : (context) => CategoryPageMovies()
+        
       },
       debugShowCheckedModeBanner: false,
       initialRoute: LoginPage.id,
