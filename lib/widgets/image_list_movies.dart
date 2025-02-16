@@ -8,7 +8,7 @@ class ImageListMovies extends StatelessWidget {
   });
 
   String imageSrc;
-  double titleRate;
+  dynamic titleRate;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;

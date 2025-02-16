@@ -18,7 +18,7 @@ class CategoryPageMovies extends StatefulWidget {
 class _CategoryPageMoviesState extends State<CategoryPageMovies> {
   List<CategoryMovies> categoryListId = CategoryMovies.categoryList;
   int initialIndex = 0;
-  
+
   @override
   void initState() {
     super.initState();
@@ -68,12 +68,12 @@ class _CategoryPageMoviesState extends State<CategoryPageMovies> {
                       }).toList())),
               Expanded(
                   child: GridView.builder(
-                      gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                          
-                          childAspectRatio: 2 / 2.8,
-                          mainAxisSpacing: 5,
-                          crossAxisSpacing: 5,
-                          crossAxisCount: 2),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio: 2 / 2.8,
+                              mainAxisSpacing: 5,
+                              crossAxisSpacing: 5,
+                              crossAxisCount: 2),
                       itemCount: state.moveisList.length,
                       itemBuilder: (context, index) {
                         return InkWell(

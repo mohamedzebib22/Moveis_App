@@ -16,6 +16,10 @@ import 'package:movies_app/widgets/custom_button.dart';
 import 'package:movies_app/widgets/custom_details.dart';
 import 'package:movies_app/widgets/custom_gener_item.dart';
 import 'package:movies_app/widgets/image_list_movies.dart';
+import 'package:movies_app/widgets/sections_of_details_movies/description_section.dart';
+import 'package:movies_app/widgets/sections_of_details_movies/details_play_section.dart';
+import 'package:movies_app/widgets/sections_of_details_movies/movies_suggesion_section.dart';
+import 'package:movies_app/widgets/sections_of_details_movies/screenshot_section.dart';
 
 class MoviesDetailsUi extends StatefulWidget {
   const MoviesDetailsUi({super.key});
@@ -26,12 +30,13 @@ class MoviesDetailsUi extends StatefulWidget {
 }
 
 class _MoviesDetailsUiState extends State<MoviesDetailsUi> {
+  String errorImage ='https://cdn.pixabay.com/photo/2016/04/24/22/30/monitor-1350918_1280.png';
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     var args = ModalRoute.of(context)?.settings.arguments as Movies;
-    int id = args.id!;
+    dynamic id = args.id!;
 
     print('********The id is ${id}********');
     BlocProvider.of<MoviesDetailsCubit>(context).getMoveisDetails(id: id);
@@ -46,155 +51,40 @@ class _MoviesDetailsUiState extends State<MoviesDetailsUi> {
               child: CircularProgressIndicator(),
             );
           } else if (state is MoviesDetailSucsess) {
-            int likeCount = state.detailsMovie?.likeCount ?? 0;
             return Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(args.largeCoverImage!),
-                        fit: BoxFit.fill)),
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: width*0.02,vertical: height*0.02),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        SizedBox(
-                          height: height * .4,
-                        ),
-                        InkWell(
-                          onTap: (){
-                             Navigator.pushNamed(context, WebviewScreen.id,arguments: args);
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(args.largeCoverImage!),
+                      fit: BoxFit.fill)),
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.02, vertical: height * 0.02),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      DetailsPlaySection(
+                          onTap: () {
+                            Navigator.pushNamed(context, WebviewScreen.id,
+                                arguments: args);
                           },
-                          child: Icon(
-                            Icons.play_circle,
-                            color: Colors.yellow,
-                            size: 95,
-                          ),
-                        ),
-                        Text(
-                          args.titleLong ?? 'UnkownTitle',
-                          style: AssetStyle.bold20white,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                        ),
-                        Text('${args.year}' ?? 'UnkouwnYear',
-                            style: AssetStyle.regular18grey,
-                            textAlign: TextAlign.center,
-                            maxLines: 2),
-                        CustomButton(
-                            title: 'Watch',
-                            textColor: Colors.white,
-                            itemColor: Colors.red),
-                        Row(
-                          children: [
-                            Expanded(
-                                child: CustomDetails(
-                                    icon: Icons.favorite,
-                                    details: state.detailsMovie?.likeCount ?? 0)),
-                            Expanded(
-                                child: CustomDetails(
-                                    icon: Icons.schedule,
-                                    details: state.detailsMovie?.runtime ?? 0)),
-                            Expanded(
-                                child: CustomDetails(
-                                    icon: Icons.star,
-                                    details: state.detailsMovie?.rating ?? 0)),
-                          ],
-                        ),
-                        Text(
-                          'ScreenShot',
-                          style: AssetStyle.bold20white,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.yellow, width: 2),
-                              borderRadius: BorderRadius.circular(16)),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.network(
-                              state.detailsMovie?.largeCoverImage ??
-                                  args.mediumCoverImage!,
-                              fit: BoxFit.fill,
-                              height: height * 0.17,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * .02,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.yellow, width: 2),
-                              borderRadius: BorderRadius.circular(16)),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.network(
-                              state.detailsMovie?.backgroundImage ??
-                                  args.backgroundImage!,
-                              fit: BoxFit.fill,
-                              height: height * 0.17,
-                            ),
-                          ),
-                        ),
-                        
-                        Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.yellow, width: 2),
-                              borderRadius: BorderRadius.circular(16)),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.network(
-                              state.detailsMovie?.largeCoverImage ??
-                                  args.largeCoverImage!,
-                              fit: BoxFit.fill,
-                              height: height * 0.17,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          'Similar',
-                          style: AssetStyle.bold20white,
-                        ),
-                        SizedBox(
-                          height: height * .52,
-                          child: GridView.builder(
-                            padding: EdgeInsets.zero,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,),
-                            itemCount: state.suggestionList?.length,
-                            itemBuilder: (context, index) {
-                              Suggestion movieSuggestion =
-                                  state.suggestionList![index];
-                              return ImageListMovies(
-                                  imageSrc: movieSuggestion.mediumCoverImage ??
-                                      'asset/image/intropage3.png',
-                                  titleRate: movieSuggestion.rating ?? 0.0);
-                            },
-                          ),
-                        ),
-                        Text('Sammary',style: AssetStyle.bold20white,),
-                        Text(args.titleEnglish??'UnkownDesc',style: AssetStyle.bold20white,),
-                        Column(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              height: height*0.24,
-                              child: GridView.builder(
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-                                itemCount: args.genres!.length,
-                                itemBuilder: (context,index){
-                                  return CustomGenerItem(type: args.genres![index]);
-                              }),
-                            ),
-                          ],
-                        ),
-                        
-                       
-                      ],
-                    ),
+                          title: args.titleEnglish!,
+                          year: args.year!,
+                          like: state.detailsMovie?.likeCount ?? 0,
+                          runtime: args.runtime ?? 0,
+                          rating: args.rating!),
+                      ScreenshotSection(screenShotImage1: args.largeCoverImage ?? errorImage, screenShotImage2: args.backgroundImage ?? errorImage, screenShotImage3: args.largeCoverImage ?? errorImage),
+                     
+                      MoviesSuggestionSection(height: height, itemCountList: state.suggestionList?.length ??0, suggestionList: state.suggestionList),
+
+                      DescriptionSection(titleEnglish: args.titleEnglish ?? 'NotFound', itemCountDetails: args.genres?.length ??0, type: args.genres)
+                     
+                    ],
                   ),
                 ),
-                );
+              ),
+            );
           } else if (state is MoviesDetailFaliure) {
             print('Error: ${state.errorMessage}');
             return Text(state.errorMessage);
@@ -207,6 +97,8 @@ class _MoviesDetailsUiState extends State<MoviesDetailsUi> {
     );
   }
 }
+
+
 
 
 /**
@@ -229,4 +121,51 @@ class _MoviesDetailsUiState extends State<MoviesDetailsUi> {
                             titleRate: movieSuggestion.rating ?? 0.0);
                       },
                     ),
+ */
+
+/**
+ 
+ SizedBox(
+                        height: height * .4,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, WebviewScreen.id,
+                              arguments: args);
+                        },
+                        child: Icon(
+                          Icons.play_circle,
+                          color: Colors.yellow,
+                          size: 95,
+                        ),
+                      ),
+                      Text(
+                        args.titleLong ?? 'UnkownTitle',
+                        style: AssetStyle.bold20white,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                      ),
+                      Text('${args.year}' ?? 'UnkouwnYear',
+                          style: AssetStyle.regular18grey,
+                          textAlign: TextAlign.center,
+                          maxLines: 2),
+                      CustomButton(
+                          title: 'Watch',
+                          textColor: Colors.white,
+                          itemColor: Colors.red),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: CustomDetails(
+                                  icon: Icons.favorite,
+                                  details: state.detailsMovie?.likeCount ?? 0)),
+                          Expanded(
+                              child: CustomDetails(
+                                  icon: Icons.schedule,
+                                  details: state.detailsMovie?.runtime ?? 0)),
+                          Expanded(
+                              child: CustomDetails(
+                                  icon: Icons.star,
+                                  details: state.detailsMovie?.rating ?? 0)),
+                        ],
  */
