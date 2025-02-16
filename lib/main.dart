@@ -12,6 +12,7 @@ import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
 import 'package:movies_app/cubits/login_cubit/login_cubit.dart';
 import 'package:movies_app/cubits/onbourding_cubit/onbourding_cubit.dart';
 import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
+import 'package:movies_app/screens/category_page_movies.dart';
 import 'package:movies_app/screens/explore_page.dart';
 
 import 'package:movies_app/screens/forget_password_page.dart';
@@ -59,10 +60,11 @@ class MoviesApp extends StatelessWidget {
         UpddateProfile.id: (context) => UpddateProfile(),
         DefualtPage.id : (context) => DefualtPage(),
         MoviesDetailsUi.id : (context) => MoviesDetailsUi(),
-        WebviewScreen.id : (context) => WebviewScreen()
+        WebviewScreen.id : (context) => WebviewScreen(),
+        CategoryPageMovies.id : (context) => CategoryPageMovies()
       },
       debugShowCheckedModeBanner: false,
-      initialRoute: InroPage.id,
+      initialRoute: LoginPage.id,
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:movies_app/models/asset_image.dart';
 import 'package:movies_app/models/movies_details.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 import 'package:movies_app/screens/movies_details_ui.dart';
+import 'package:movies_app/screens/web_view_page.dart';
 import 'package:movies_app/widgets/image_list_movies.dart';
 
 class BodyOfHomeTap extends StatefulWidget {
@@ -111,7 +112,7 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
                   Movies movie = filteredMovies[index];
                   return InkWell(
                     onTap: (){
-                      BlocProvider.of<MoviesDetailsCubit>(context).navigateToDetailsScreen(movie, context);
+                     Navigator.pushNamed(context, WebviewScreen.id,arguments:filteredMovies[index] );
                     },
                     child: ImageListMovies(
                       imageSrc:
