@@ -22,7 +22,7 @@ class CategoryMoviesCubit extends Cubit<CategoryMoviesState> {
  
   void changeSelectedIndex(int index) {
     selectedIndex = index;
-     getMoveis(categoryId: CategoryMovies.categoryList[selectedIndex].categoryId);
+   
     emit(CategoryMoviesIndexChanged(index: selectedIndex)); 
   }
     //----------------------------------------
@@ -32,6 +32,9 @@ class CategoryMoviesCubit extends Cubit<CategoryMoviesState> {
       Response response = await api.get(
         Endpoint.baseUrlMoveis,
         Endpoint.listMoveis,
+        queryParameters: {
+          'genre' :categoryId
+        }
       );
       print('===== Response Status: ${response.statusCode} =====');
 
