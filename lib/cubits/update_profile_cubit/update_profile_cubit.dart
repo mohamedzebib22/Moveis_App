@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/cubits/update_profile_cubit/update_profile_state.dart';
 
-import 'package:movies_app/models/asset_image.dart';
+import 'package:movies_app/core/utils/models/asset_image.dart';
 
 class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   UpdateProfileCubit() : super(UpdateProfileInitial());

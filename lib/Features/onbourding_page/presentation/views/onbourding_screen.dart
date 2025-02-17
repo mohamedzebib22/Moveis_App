@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/cubits/onbourding_cubit/onbourding_cubit.dart';
-import 'package:movies_app/cubits/onbourding_cubit/onbourding_state.dart';
-import 'package:movies_app/widgets/custom_bottom_sheet.dart';
-import 'package:movies_app/widgets/custom_button.dart';
+import 'package:movies_app/Features/onbourding_page/data/cubit/onbourding_cubit/onbourding_cubit.dart';
+import 'package:movies_app/Features/onbourding_page/data/cubit/onbourding_cubit/onbourding_state.dart';
+import 'package:movies_app/Features/onbourding_page/presentation/views/widgets/custom_bottom_sheet.dart';
+import 'package:movies_app/core/utils/widgets/custom_button.dart';
 
 class OnbourdingScreen extends StatelessWidget {
   const OnbourdingScreen({super.key});

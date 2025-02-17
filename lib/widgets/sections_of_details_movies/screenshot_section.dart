@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/asset_style.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
 import 'package:movies_app/widgets/custom_screen_shot_Image.dart';
 
 class ScreenshotSection extends StatelessWidget {

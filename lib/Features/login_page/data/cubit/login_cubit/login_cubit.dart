@@ -7,7 +7,7 @@ import 'package:movies_app/core/api/api_consumer.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/core/errors/server_exeptions.dart';
 import 'package:movies_app/core/helper/cach_helper.dart';
-import 'package:movies_app/cubits/login_cubit/login_state.dart';
+import 'package:movies_app/Features/login_page/data/cubit/login_cubit/login_state.dart';
 import 'package:movies_app/models/sign_in_model.dart';
 import 'package:movies_app/screens/forget_password_page.dart';
 import 'package:movies_app/screens/register_page.dart';

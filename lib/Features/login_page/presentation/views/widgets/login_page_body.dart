@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/api/endpoint.dart';
-import 'package:movies_app/cubits/login_cubit/login_cubit.dart';
-import 'package:movies_app/cubits/login_cubit/login_state.dart';
-import 'package:movies_app/models/asset_image.dart';
-import 'package:movies_app/models/asset_style.dart';
-import 'package:movies_app/widgets/create_account_and_log_in_widget.dart';
-import 'package:movies_app/widgets/custom_button.dart';
-import 'package:movies_app/widgets/custom_divider.dart';
-import 'package:movies_app/widgets/custom_text_feild.dart';
-import 'package:movies_app/widgets/forget_widget.dart';
-import 'package:movies_app/widgets/or_widget.dart';
+import 'package:movies_app/Features/login_page/data/cubit/login_cubit/login_cubit.dart';
+import 'package:movies_app/Features/login_page/data/cubit/login_cubit/login_state.dart';
+import 'package:movies_app/core/utils/models/asset_image.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
+import 'package:movies_app/core/utils/widgets/create_account_and_log_in_widget.dart';
+import 'package:movies_app/core/utils/widgets/custom_button.dart';
+import 'package:movies_app/Features/login_page/presentation/views/widgets/custom_divider.dart';
+import 'package:movies_app/core/utils/widgets/custom_text_feild.dart';
+import 'package:movies_app/Features/login_page/presentation/views/widgets/forget_widget.dart';
+import 'package:movies_app/Features/login_page/presentation/views/widgets/or_widget.dart';
 
 class LoginPageBody extends StatelessWidget {
   const LoginPageBody({super.key});

@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/asset_style.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
 
 class CustomButton extends StatelessWidget {
   CustomButton({super.key ,this.itemColor=Colors.yellow,this.onTap,required this.title,this.textColor =Colors.black });

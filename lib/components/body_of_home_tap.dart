@@ -2,12 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/cubits/movies_details_cubit/movies_details_cubit.dart';
-import 'package:movies_app/models/asset_image.dart';
+import 'package:movies_app/core/utils/models/asset_image.dart';
 import 'package:movies_app/models/movies_details.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 import 'package:movies_app/screens/movies_details_ui.dart';
 import 'package:movies_app/screens/web_view_page.dart';
-import 'package:movies_app/widgets/image_list_movies.dart';
+import 'package:movies_app/core/utils/widgets/image_list_movies.dart';
 
 class BodyOfHomeTap extends StatefulWidget {
   const BodyOfHomeTap({

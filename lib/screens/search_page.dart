@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_cubit.dart';
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_state.dart';
-import 'package:movies_app/models/asset_image.dart';
+import 'package:movies_app/core/utils/models/asset_image.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 import 'package:movies_app/screens/web_view_page.dart';
-import 'package:movies_app/widgets/custom_text_feild.dart';
-import 'package:movies_app/widgets/image_list_movies.dart';
+import 'package:movies_app/core/utils/widgets/custom_text_feild.dart';
+import 'package:movies_app/core/utils/widgets/image_list_movies.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

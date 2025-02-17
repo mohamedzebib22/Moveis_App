@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/asset_image.dart';
+import 'package:movies_app/core/utils/models/asset_image.dart';
 import 'package:movies_app/widgets/custom_pick_avatar.dart';
 
 class CustomBottomSheetPickAvatar extends StatelessWidget {

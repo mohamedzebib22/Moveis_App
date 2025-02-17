@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/asset_style.dart';
-import 'package:movies_app/widgets/custom_button.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
+import 'package:movies_app/core/utils/widgets/custom_button.dart';
 
 class CustomBottomSheetOnBourding extends StatelessWidget {
    CustomBottomSheetOnBourding({super.key ,  this.backButton, this.onNextTap,this.onBackTap,required this.title,required this.supTitle});

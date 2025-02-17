@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
 
-import 'package:movies_app/models/asset_image.dart';
-import 'package:movies_app/models/avatar_image_list.dart';
-import 'package:movies_app/screens/login_page.dart';
-import 'package:movies_app/widgets/create_account_and_log_in_widget.dart';
-import 'package:movies_app/widgets/custom_button.dart';
+import 'package:movies_app/core/utils/models/asset_image.dart';
+import 'package:movies_app/core/utils/models/avatar_image_list.dart';
+import 'package:movies_app/Features/login_page/presentation/views/login_page.dart';
+import 'package:movies_app/core/utils/widgets/create_account_and_log_in_widget.dart';
+import 'package:movies_app/core/utils/widgets/custom_button.dart';
 import 'package:movies_app/widgets/custom_pick_avatar.dart';
-import 'package:movies_app/widgets/custom_text_feild.dart';
+import 'package:movies_app/core/utils/widgets/custom_text_feild.dart';
 
 class RegisterPageBody extends StatelessWidget {
   const RegisterPageBody({super.key});

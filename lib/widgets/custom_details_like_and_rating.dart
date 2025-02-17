@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/asset_style.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
 
-class CustomDetails extends StatelessWidget {
-  const CustomDetails({super.key, required this.icon,required this.details});
+class CustomDetailsLikeAndRating extends StatelessWidget {
+  const CustomDetailsLikeAndRating({super.key, required this.icon,required this.details});
   final IconData icon;
   final dynamic details;
   @override

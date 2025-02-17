@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/asset_style.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
 
 class CreateAccountAndLoginWidget extends StatelessWidget {
    CreateAccountAndLoginWidget({super.key ,required this.text1,required this.text2,required this.onTap});

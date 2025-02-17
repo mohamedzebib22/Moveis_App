@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:movies_app/cubits/update_profile_cubit/update_profile_state.dart';
 import 'package:movies_app/widgets/custom_bottom_sheet_pick_avatar.dart';
-import 'package:movies_app/widgets/custom_button.dart';
-import 'package:movies_app/widgets/custom_text_feild.dart';
+import 'package:movies_app/core/utils/widgets/custom_button.dart';
+import 'package:movies_app/core/utils/widgets/custom_text_feild.dart';
 
 class UpdateProfileBody extends StatelessWidget {
   const UpdateProfileBody({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/asset_style.dart';
-import 'package:movies_app/widgets/custom_button.dart';
-import 'package:movies_app/widgets/custom_details.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
+import 'package:movies_app/core/utils/widgets/custom_button.dart';
+import 'package:movies_app/widgets/custom_details_like_and_rating.dart';
 
 class DetailsPlaySection extends StatelessWidget {
   const DetailsPlaySection({super.key, required this.onTap, required this.title, required this.year, required this.like, required this.runtime, required this.rating});
@@ -44,15 +44,15 @@ class DetailsPlaySection extends StatelessWidget {
         Row(
           children: [
             Expanded(
-                child: CustomDetails(
+                child: CustomDetailsLikeAndRating(
                     icon: Icons.favorite,
                     details: '$like' )),
             Expanded(
-                child: CustomDetails(
+                child: CustomDetailsLikeAndRating(
                     icon: Icons.schedule,
                     details: '$runtime')),
             Expanded(
-                child: CustomDetails(
+                child: CustomDetailsLikeAndRating(
                     icon: Icons.star,
                     details: '$rating')),
           ],

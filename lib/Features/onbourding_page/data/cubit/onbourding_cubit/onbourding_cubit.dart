@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/cubits/onbourding_cubit/onbourding_state.dart';
-import 'package:movies_app/screens/login_page.dart';
+import 'package:movies_app/Features/onbourding_page/data/cubit/onbourding_cubit/onbourding_state.dart';
+import 'package:movies_app/Features/login_page/presentation/views/login_page.dart';
 
 class OnbourdingCubit extends Cubit<OnbourdingState> {
   OnbourdingCubit() : super(OnbourdingInitial());

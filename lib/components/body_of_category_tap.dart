@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/cubits/category_movies_cubit/category_movies_cubit.dart';
 import 'package:movies_app/cubits/category_movies_cubit/category_movies_state.dart';
-import 'package:movies_app/models/asset_style.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
 import 'package:movies_app/models/category_movies.dart';
 import 'package:movies_app/screens/web_view_page.dart';
 import 'package:movies_app/widgets/category_item.dart';
-import 'package:movies_app/widgets/image_list_movies.dart';
+import 'package:movies_app/core/utils/widgets/image_list_movies.dart';
 
 class CategoryPageMovies extends StatefulWidget {
   const CategoryPageMovies({super.key});

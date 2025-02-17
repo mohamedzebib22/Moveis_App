@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/widgets/custom_button.dart';
-import 'package:movies_app/widgets/custom_text_feild.dart';
+import 'package:movies_app/core/utils/widgets/custom_button.dart';
+import 'package:movies_app/core/utils/widgets/custom_text_feild.dart';
 
 class ForgetPasswordPage extends StatelessWidget {
   const ForgetPasswordPage({super.key});

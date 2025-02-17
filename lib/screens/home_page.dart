@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/screens/onbourding_screen/intro_page.dart';
+import 'package:movies_app/Features/onbourding_page/presentation/views/intro_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: InroPage(),
+      body: IntroPage(),
     );
   }
 }

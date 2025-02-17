@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/asset_style.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
 import 'package:movies_app/models/onbourding_model.dart';
-import 'package:movies_app/screens/onbourding_screen/onbourding_screen.dart';
-import 'package:movies_app/widgets/custom_button.dart';
+import 'package:movies_app/Features/onbourding_page/presentation/views/onbourding_screen.dart';
+import 'package:movies_app/core/utils/widgets/custom_button.dart';
 
-class CustomInroWidget extends StatelessWidget {
-  CustomInroWidget({super.key, });
+class IntroPageBody extends StatelessWidget {
+  const IntroPageBody({super.key, });
   
   //String image;
   @override

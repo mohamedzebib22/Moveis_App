@@ -10,18 +10,18 @@ import 'package:movies_app/cubits/update_profile_cubit/update_profile_cubit.dart
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_cubit.dart';
 
 import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
-import 'package:movies_app/cubits/login_cubit/login_cubit.dart';
-import 'package:movies_app/cubits/onbourding_cubit/onbourding_cubit.dart';
+import 'package:movies_app/Features/login_page/data/cubit/login_cubit/login_cubit.dart';
+import 'package:movies_app/Features/onbourding_page/data/cubit/onbourding_cubit/onbourding_cubit.dart';
 import 'package:movies_app/cubits/register_cubit/register_cubit.dart';
 
 import 'package:movies_app/screens/explore_page.dart';
 
 import 'package:movies_app/screens/forget_password_page.dart';
 import 'package:movies_app/screens/home_page.dart';
-import 'package:movies_app/screens/login_page.dart';
+import 'package:movies_app/Features/login_page/presentation/views/login_page.dart';
 import 'package:movies_app/screens/movies_details_ui.dart';
-import 'package:movies_app/screens/onbourding_screen/intro_page.dart';
-import 'package:movies_app/screens/onbourding_screen/onbourding_screen.dart';
+import 'package:movies_app/Features/onbourding_page/presentation/views/intro_page.dart';
+import 'package:movies_app/Features/onbourding_page/presentation/views/onbourding_screen.dart';
 import 'package:movies_app/screens/register_page.dart';
 import 'package:movies_app/screens/list_moveis_ui.dart';
 import 'package:movies_app/screens/search_page.dart';
@@ -52,7 +52,7 @@ class MoviesApp extends StatelessWidget {
       routes: {
         LoginPage.id: (context) => LoginPage(),
         OnbourdingScreen.id: (context) => OnbourdingScreen(),
-        InroPage.id: (context) => InroPage(),
+        IntroPage.id: (context) => IntroPage(),
         HomePage.id: (context) => HomePage(),
         RegisterPage.id: (context) => RegisterPage(),
         ForgetPasswordPage.id: (context) => ForgetPasswordPage(),
@@ -66,7 +66,7 @@ class MoviesApp extends StatelessWidget {
         
       },
       debugShowCheckedModeBanner: false,
-      initialRoute: LoginPage.id,
+      initialRoute: IntroPage.id,
     );
   }
 }

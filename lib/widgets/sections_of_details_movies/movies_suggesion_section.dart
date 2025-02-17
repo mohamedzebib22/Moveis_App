@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/asset_style.dart';
+import 'package:movies_app/core/utils/models/asset_style.dart';
 import 'package:movies_app/models/movies_suggestion.dart';
-import 'package:movies_app/widgets/image_list_movies.dart';
+import 'package:movies_app/core/utils/widgets/image_list_movies.dart';
 
 class MoviesSuggestionSection extends StatelessWidget {
   const MoviesSuggestionSection({
