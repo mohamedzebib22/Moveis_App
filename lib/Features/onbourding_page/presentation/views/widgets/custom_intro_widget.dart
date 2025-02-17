@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/models/asset_style.dart';
-import 'package:movies_app/models/onbourding_model.dart';
+import 'package:movies_app/Features/onbourding_page/data/models/onbourding_model.dart';
 import 'package:movies_app/Features/onbourding_page/presentation/views/onbourding_screen.dart';
 import 'package:movies_app/core/utils/widgets/custom_button.dart';
 
-class IntroPageBody extends StatelessWidget {
-  const IntroPageBody({super.key, });
+class CustomIntroPageBody extends StatelessWidget {
+  const CustomIntroPageBody({super.key, });
   
   //String image;
   @override
@@ -22,7 +22,7 @@ class IntroPageBody extends StatelessWidget {
                 image: AssetImage('asset/image/intropage1.png'
                   //OnbourdingModel.imageList[index].image
                   ),
-                fit: BoxFit.fill,
+                fit: BoxFit.fill,  
               )),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -2,16 +2,16 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:movies_app/components/bottom_navigation_bar.dart';
+import 'package:movies_app/Features/defualt_page/presentation/views/bottom_navigation_bar.dart';
 import 'package:movies_app/core/api/api_consumer.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/core/errors/server_exeptions.dart';
 import 'package:movies_app/core/helper/cach_helper.dart';
 import 'package:movies_app/Features/login_page/data/cubit/login_cubit/login_state.dart';
-import 'package:movies_app/models/sign_in_model.dart';
-import 'package:movies_app/screens/forget_password_page.dart';
-import 'package:movies_app/screens/register_page.dart';
-import 'package:movies_app/screens/list_moveis_ui.dart';
+import 'package:movies_app/core/utils/models/sign_in_model.dart';
+import 'package:movies_app/Features/forget_password_page/presentation/views/forget_password_page.dart';
+import 'package:movies_app/Features/register_page/presentation/views/register_page.dart';
+import 'package:movies_app/Features/list_movies_tap_page/presentation/views/list_moveis_ui.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.api) : super(LoginInitial());
