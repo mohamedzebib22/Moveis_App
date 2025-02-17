@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/api/endpoint.dart';
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_cubit.dart';
 import 'package:movies_app/cubits/list_moveis_cubit/list_moveis_state.dart';
+import 'package:movies_app/models/asset_image.dart';
 import 'package:movies_app/models/movies_list_model.dart';
 import 'package:movies_app/screens/web_view_page.dart';
 import 'package:movies_app/widgets/custom_text_feild.dart';
@@ -64,7 +65,8 @@ class _SearchPageState extends State<SearchPage> {
                       return nameFilter || genresFilter || yearsFilter;
                     }).toList();
 
-                    return GridView.builder(
+                    return movieFilter.isEmpty || movieFilter == null ? Center(child: Image.asset(ImagesApp.iconofsearchpage),) :
+                    GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2),
                       itemCount: filteredMovies.length,

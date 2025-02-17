@@ -17,4 +17,5 @@ class ImagesApp {
   static String avatar7 = 'asset/image/avatar7.png';
   static String avatar8 = 'asset/image/avatar8.png';
   static String avatar9 = 'asset/image/avatar9.png';
+  static String iconofsearchpage = 'asset/image/iconofsearchpage.png';
 }
