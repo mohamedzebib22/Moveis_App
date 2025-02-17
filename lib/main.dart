@@ -29,7 +29,7 @@ import 'package:movies_app/screens/updateProfile.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  // CachHelper().init();
+  CachHelper().init();
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => OnbourdingCubit()),
     BlocProvider(create: (context) => UpdateProfileCubit()),
