@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
+// import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:movies_app/components/bottom_navigation_bar.dart';
 import 'package:movies_app/core/api/api_consumer.dart';
 import 'package:movies_app/core/api/endpoint.dart';
@@ -32,10 +32,10 @@ class LoginCubit extends Cubit<LoginState> {
         if (response.statusCode == 200) {
           user = SignInModel.fromJson(response.data);
           
-          final decodedToken = JwtDecoder.decode(user.token);
-          CachHelper().saveData(key:ApiKey.token,value: user.token );
-          CachHelper().saveData(key:ApiKey.id,value: decodedToken[ApiKey.id] );
-          print('The id is ${decodedToken['id']}===============');
+          // final decodedToken = JwtDecoder.decode(user.token);
+          // CachHelper().saveData(key:ApiKey.token,value: user.token );
+          // CachHelper().saveData(key:ApiKey.id,value: decodedToken[ApiKey.id] );
+          // print('The id is ${decodedToken['id']}===============');
           emit(LoginSuccess());
           Navigator.pushReplacementNamed(context, DefualtPage.id);
           print(response.data.toString());

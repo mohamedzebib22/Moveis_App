@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/screens/explore_page.dart';
 import 'package:movies_app/screens/list_moveis_ui.dart';
+import 'package:movies_app/screens/profile_page.dart';
 import 'package:movies_app/screens/search_page.dart';
 import 'package:movies_app/screens/updateProfile.dart';
 
@@ -18,7 +19,7 @@ class _DefualtPageState extends State<DefualtPage> {
     ListMoveisUi(),
     SearchPage(),
     ExplorePage(),
-    UpddateProfile(),
+    ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {

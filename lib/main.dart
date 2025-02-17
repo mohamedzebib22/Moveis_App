@@ -20,6 +20,7 @@ import 'package:movies_app/screens/login_page.dart';
 import 'package:movies_app/screens/movies_details_ui.dart';
 import 'package:movies_app/screens/onbourding_screen/intro_page.dart';
 import 'package:movies_app/screens/onbourding_screen/onbourding_screen.dart';
+import 'package:movies_app/screens/profile_page.dart';
 import 'package:movies_app/screens/register_page.dart';
 import 'package:movies_app/screens/list_moveis_ui.dart';
 import 'package:movies_app/screens/search_page.dart';
@@ -57,7 +58,8 @@ class MoviesApp extends StatelessWidget {
         ExplorePage.id: (context) => ExplorePage(),
         UpddateProfile.id: (context) => UpddateProfile(),
         DefualtPage.id : (context) => DefualtPage(),
-        MoviesDetailsUi.id : (context) => MoviesDetailsUi()
+        MoviesDetailsUi.id : (context) => MoviesDetailsUi(),
+        ProfilePage.id : (context) => ProfilePage(),
       },
       debugShowCheckedModeBanner: false,
       initialRoute: InroPage.id,
