@@ -33,7 +33,7 @@ import 'package:movies_app/Features/web_view_screen/presentation/views/web_view_
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  CachHelper().init();
+  // CachHelper().init();
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => OnbourdingCubit()),
     BlocProvider(create: (context) => UpdateProfileCubit()),
@@ -64,7 +64,7 @@ class MoviesApp extends StatelessWidget {
         UpddateProfile.id: (context) => UpddateProfile(),
         DefualtPage.id : (context) => DefualtPage(),
         MoviesDetailsPage.id : (context) => MoviesDetailsPage(),
-        WebviewScreen.id : (context) => WebviewScreen(),
+        // WebviewScreen.id : (context) => WebviewScreen(),
         
       },
       debugShowCheckedModeBanner: false,

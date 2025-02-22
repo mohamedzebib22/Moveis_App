@@ -39,10 +39,10 @@ dependencies:
   introduction_screen: ^3.1.14
   flutter_bloc: ^9.0.0
   dio: ^5.8.0+1
-  jwt_decoder: ^2.0.1
-  shared_preferences: ^2.5.1
+  # jwt_decoder: ^2.0.1
+  # shared_preferences: ^2.5.1
   carousel_slider: ^5.0.0
-  webview_flutter: ^4.10.0
+  # webview_flutter: ^4.10.0
 
 dev_dependencies:
   flutter_test:

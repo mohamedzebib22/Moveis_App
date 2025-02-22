@@ -33,7 +33,7 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Container(
                         child: 
-                          Text('data \n 000', style: TextStyle(color: Colors.white),),   
+                          Text('Watched \n 0', style: TextStyle(color: Colors.white),),   
                       ),
                     ],
                   ),
@@ -41,7 +41,7 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Container(
                         child: 
-                          Text('data \n 000', style: TextStyle(color: Colors.white),),   
+                          Text('History \n 0', style: TextStyle(color: Colors.white),),   
                       ),
                     ],
                   ),
