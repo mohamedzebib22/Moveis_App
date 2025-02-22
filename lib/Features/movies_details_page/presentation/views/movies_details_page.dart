@@ -66,8 +66,8 @@ class _MoviesDetailsPageState extends State<MoviesDetailsPage> {
                     children: [
                       DetailsPlaySection(
                           onTap: () {
-                            // Navigator.pushNamed(context, WebviewScreen.id,
-                            //     arguments: args);
+                            Navigator.pushNamed(context, WebviewScreen.id,
+                                arguments: args);
                           },
                           title: args.titleEnglish!,
                           year: args.year!,

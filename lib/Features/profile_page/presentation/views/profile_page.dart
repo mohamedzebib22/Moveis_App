@@ -24,7 +24,6 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      // Image(image: AssetImage('asset/image/avatar1.png'),),
                       Image.asset(cubit.currentAvatar),
                       Text('UserName', style: TextStyle(color: Colors.white),),
                     ],
@@ -33,7 +32,7 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Container(
                         child: 
-                          Text('Watched \n 0', style: TextStyle(color: Colors.white),),   
+                          Text('List \n   0', style: TextStyle(color: Colors.white),),   
                       ),
                     ],
                   ),
@@ -41,7 +40,7 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Container(
                         child: 
-                          Text('History \n 0', style: TextStyle(color: Colors.white),),   
+                          Text('History \n   0', style: TextStyle(color: Colors.white),),   
                       ),
                     ],
                   ),
@@ -54,11 +53,6 @@ class ProfilePage extends StatelessWidget {
                         itemColor: Color(0xFFF6BD00),
                         textColor: Colors.black,
                         title: 'Edit Profile',
-                      ),
-                      CustomButton(
-                        itemColor: Color(0xFFE82626),
-                        textColor: Colors.white,
-                        title: 'Exit',
                       ),
                     ],
                   ),
@@ -73,7 +67,15 @@ class ProfilePage extends StatelessWidget {
                     Tab(icon: ImageIcon(AssetImage('asset/icons/history_icon.png'),),),
                   ],),
         ),
-        // body: ,
+        body: Container(
+          child: 
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(image: AssetImage('asset/image/iconofsearchpage.png')),
+              ],
+            ),
+        ),
       ),
     );
   }

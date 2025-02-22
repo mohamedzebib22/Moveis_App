@@ -34,7 +34,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         emit(RegisterLoading());
         final Response response =
             await api.post(baseUrl, Endpoint.signUp, data: {
-          ApiKey.name: name,
+          ApiKey.name: name, 
           ApiKey.email: email,
           ApiKey.password: password,
           ApiKey.confirmPassword: confirmPassword,

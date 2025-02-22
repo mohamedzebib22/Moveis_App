@@ -72,14 +72,6 @@ class RegisterPageBody extends StatelessWidget {
                       );
                     },
                   ),
-
-
-                  // Image.asset(
-                  //   'asset/image/avatar_group.png',
-                  //   height: height * 0.2,
-                  // ),
-
-
                   Text(
                     'Avatar',
                     style: TextStyle(fontSize: 16, color: Colors.white),

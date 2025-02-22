@@ -112,7 +112,7 @@ class _BodyOfHomeTapState extends State<BodyOfHomeTap> {
                   Movies movie = filteredMovies[index];
                   return InkWell(
                     onTap: (){
-                    //  Navigator.pushNamed(context, WebviewScreen.id,arguments:filteredMovies[index] );
+                     Navigator.pushNamed(context, WebviewScreen.id,arguments:filteredMovies[index] );
                     },
                     child: ImageListMovies(
                       imageSrc:

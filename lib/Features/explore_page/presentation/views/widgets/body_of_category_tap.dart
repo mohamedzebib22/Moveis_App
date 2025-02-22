@@ -78,9 +78,9 @@ class _BodyOfCategoryTapState extends State<BodyOfCategoryTap> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            // print(categoryList[index].genres);
-                            // Navigator.pushNamed(context, WebviewScreen.id,
-                            //     arguments: state.moveisList[index]);
+                            print(categoryList[index].genres);
+                            Navigator.pushNamed(context, WebviewScreen.id,
+                                arguments: state.moveisList[index]);
                           },
                           child: ImageListMovies(
                               imageSrc: categoryList[index].largeCoverImage ??

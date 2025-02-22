@@ -73,7 +73,7 @@ class _SearchPageState extends State<SearchPage> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: (){
-                            // Navigator.pushNamed(context, WebviewScreen.id,arguments:filteredMovies[index] );
+                            Navigator.pushNamed(context, WebviewScreen.id,arguments:filteredMovies[index] );
                           },
                           child: ImageListMovies(
                               imageSrc:
